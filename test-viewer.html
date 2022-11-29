@@ -18,8 +18,7 @@
     zoom: 9, // starting zoom
   });
 
-  // https://stackoverflow.com/questions/57166761/mapbox-gl-height-100/57248905#comment122324921_57248905
-  map.on("render", () => map.resize());
+  document.addEventListener("DOMContentLoaded", () => map.resize());
 </script>
 <style>
   #map {
