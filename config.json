@@ -129,7 +129,7 @@
       "scheme": "xyz",
       "type": "baselayer",
       "format": "pbf",
-      "tiles": ["https://example.com/liechtenstein/{z}/{x}/{y}.pbf"]
+      "tiles": ["http://localhost:3000/output/{z}/{x}/{y}.pbf"]
     }
   }
 }
