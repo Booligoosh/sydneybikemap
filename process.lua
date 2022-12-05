@@ -310,9 +310,9 @@ function way_function(way)
 			-- todo: construction/proposed cycleways
 			then
 				if (Set {"footway", "pedestrian"}[highway]) or (Set {"yes", "designated"}[footAccess] and segregated ~= "yes") then
-					h = "sharedPath"; minzoom = 14
+					h = "sharedPath"; minzoom = 9
 				elseif highway == "cycleway" then
-					h = "separatedCycleway"; minzoom = 14
+					h = "separatedCycleway"; minzoom = 9
 				else
 					print("ANOMALY")
 				end
