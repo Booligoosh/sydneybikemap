@@ -287,6 +287,12 @@ function way_function(way)
 		local access = way:Find("access")
 		if access=="private" or access=="no" then return end
 
+		-- ME
+		local bicycleAccess = way:Find("bicycle")
+		local footAccess = way:Find("foot")
+		local segregated = way:Find("segregated")
+		-- END ME
+
 		local h = highway
 		local minzoom = 99
 		local layer = "transportation"
@@ -298,6 +304,20 @@ function way_function(way)
 		if minorRoadValues[highway] then h = "minor"; minzoom = 12 end
 		if trackValues[highway]     then h = "track"; minzoom = 14 end
 		if pathValues[highway]      then h = "path" ; minzoom = 14 end
+		-- ME
+		if highway == "cycleway"
+			or (Set {"yes", "designated"}[bicycleAccess] and Set {"cycleway", "path", "footway", "pedestrian"}[highway])
+			-- todo: construction/proposed cycleways
+			then
+				if (Set {"footway", "pedestrian"}[highway]) or (Set {"yes", "designated"}[footAccess] and segregated ~= "yes") then
+					h = "sharedPath"; minzoom = 14
+				elseif highway == "cycleway" then
+					h = "separatedCycleway"; minzoom = 14
+				else
+					print("ANOMALY")
+				end
+		end
+		-- END ME
 		if h=="service"             then              minzoom = 12 end
 
 		-- Links (ramp)

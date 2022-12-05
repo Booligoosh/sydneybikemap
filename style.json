@@ -356,6 +356,52 @@
       }
     },
     {
+      "id": "road_shared_path",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "sharedPath"]
+      ],
+      "layout": { "line-cap": "square", "line-join": "bevel" },
+      "paint": {
+        "line-color": "#3b7ec7",
+        "line-dasharray": [1, 1],
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [4, 0.25],
+            [20, 10]
+          ]
+        }
+      }
+    },
+    {
+      "id": "road_separated_cycleway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "separatedCycleway"]
+      ],
+      "layout": { "line-cap": "square", "line-join": "bevel" },
+      "paint": {
+        "line-color": "#2c9551",
+        "line-dasharray": [1, 1],
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [4, 0.25],
+            [20, 10]
+          ]
+        }
+      }
+    },
+    {
       "id": "road_minor",
       "type": "line",
       "source": "openmaptiles",
