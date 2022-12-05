@@ -235,11 +235,12 @@ function way_function(way)
 	local housenumber = way:Find("addr:housenumber")
 	local write_name = false
 	local construction = way:Find("construction")
+	local proposed = way:Find("proposed") -- ME
 
 	-- Miscellaneous preprocessing
 	if way:Find("disused") == "yes" then return end
 	if boundary~="" and way:Find("protection_title")=="National Forest" and way:Find("operator")=="United States Forest Service" then return end
-	if highway == "proposed" then return end
+	-- if highway == "proposed" then return end -- Commented out by ME
 	if aerowayBuildings[aeroway] then building="yes"; aeroway="" end
 	if landuse == "field" then landuse = "farmland" end
 	if landuse == "meadow" and way:Find("meadow")=="agricultural" then landuse="farmland" end
@@ -307,7 +308,6 @@ function way_function(way)
 		-- ME
 		if highway == "cycleway"
 			or (Set {"yes", "designated"}[bicycleAccess] and Set {"cycleway", "path", "footway", "pedestrian"}[highway])
-			-- todo: construction/proposed cycleways
 			then
 				if (Set {"footway", "pedestrian"}[highway]) or (Set {"yes", "designated"}[footAccess] and segregated ~= "yes") then
 					h = "sharedPath"; minzoom = 9
@@ -343,6 +343,15 @@ function way_function(way)
 				minzoom = 14
 			end
 		end
+
+		-- ME
+		if highway == "proposed" and proposed == "cycleway" then
+			h = "proposedCycleway"; minzoom = 9
+		end
+		if highway == "construction" and construction == "cycleway" then
+			h = "constructionCycleway"; minzoom = 9
+		end
+		-- END ME
 
 		-- Write to layer
 		if minzoom <= 14 then

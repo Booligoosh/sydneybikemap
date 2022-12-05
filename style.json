@@ -616,6 +616,52 @@
       }
     },
     {
+      "id": "road_proposed_cycleway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "proposedCycleway"]
+      ],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": "hsl(300, 50%, 70%)",
+        "line-dasharray": [2, 4],
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [6, 0.5],
+            [20, 20]
+          ]
+        }
+      }
+    },
+    {
+      "id": "road_construction_cycleway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "constructionCycleway"]
+      ],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": "hsl(6, 93%, 71%)",
+        "line-dasharray": [2, 4],
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [6, 0.5],
+            [20, 20]
+          ]
+        }
+      }
+    },
+    {
       "id": "road_shared_path",
       "type": "line",
       "source": "openmaptiles",
