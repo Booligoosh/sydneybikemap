@@ -12,10 +12,13 @@ jobs:
   update-tiles:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf -O ./tiles/Sydney.osm.pbf
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download OSM data
+        run: wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf -O ./tiles/Sydney.osm.pbf
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
-      - uses: systemed/tilemaker@v2.3.0
+      - name: Generate tiles
+        uses: systemed/tilemaker@v2.3.0
         with:
           # Required, same to --input
           input: ./tiles/Sydney.osm.pbf
@@ -30,11 +33,13 @@ jobs:
           # Optional, other arguments
           # If not being set, default to '--verbose'
           # extra: --threads 0
-      - uses: actions/setup-node@v3
+      # https://github.com/cloudflare/pages-action#readme
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
-          node-version: "18"
-      - run: cd tiles && npm install
-      - run: cd tiles && node ./uploadToR2.js
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: sydneybikemap-tiles
+          directory: output
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
