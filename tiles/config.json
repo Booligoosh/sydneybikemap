@@ -129,7 +129,7 @@
       "scheme": "xyz",
       "type": "baselayer",
       "format": "pbf",
-      "tiles": ["http://localhost:3000/output/{z}/{x}/{y}.pbf"]
+      "tiles": ["https://tiles.sydneybikemap.ethan.link/{z}/{x}/{y}.pbf"]
     }
   }
 }
