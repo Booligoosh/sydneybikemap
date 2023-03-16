@@ -22,26 +22,24 @@ jobs:
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
         # run: wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf -O ./tiles/Sydney.osm.pbf
-        run: ./osmconvert64 new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -b=149.526157,-34.946458,152.571173,-32.026925
+        run: ./osmconvert64 new_south_wales.osm.pbf -o=tiles/data.osm.pbf --complete-ways -b=149.526157,-34.946458,152.571173,-32.026925
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
-      # - name: Generate tiles
-      #   uses: systemed/tilemaker@v2.3.0
-      #   with:
-      #     # Required, same to --input
-      #     input: ./tiles/Sydney.osm.pbf
-      #     # Required, same to --output. Could be a directory or a .mbtiles files
-      #     output: ./tiles/output
-      #     # Optional, same to --config
-      #     # If not being set, default to resources/config-openmaptiles.config
-      #     config: ./tiles/config.json
-      #     # Optional, same to --process
-      #     # If not being set, default to resources/process-openmaptiles.lua
-      #     process: ./tiles/process.lua
-      #     # Optional, other arguments
-      #     # If not being set, default to '--verbose'
-      #     # extra: --threads 0
-      - name: Fail
-        run: abcdefg
+      - name: Generate tiles
+        uses: systemed/tilemaker@v2.3.0
+        with:
+          # Required, same to --input
+          input: ./tiles/data.osm.pbf
+          # Required, same to --output. Could be a directory or a .mbtiles files
+          output: ./tiles/output
+          # Optional, same to --config
+          # If not being set, default to resources/config-openmaptiles.config
+          config: ./tiles/config.json
+          # Optional, same to --process
+          # If not being set, default to resources/process-openmaptiles.lua
+          process: ./tiles/process.lua
+          # Optional, other arguments
+          # If not being set, default to '--verbose'
+          # extra: --threads 0
       - name: Copy Cloudflare Pages config files to output folder
         run: sudo cp ./tiles/_headers ./tiles/output/_headers
       # https://github.com/cloudflare/pages-action#readme
