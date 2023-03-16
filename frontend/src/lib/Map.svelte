@@ -19,7 +19,7 @@
       style: window.location.origin + "/style.json", // stylesheet location
       center: [151.2, -33.8], // starting position [lng, lat]
       zoom: 9, // starting zoom
-      maxBounds: [149.526157, -34.946458, 152.571173, -32.026925], // copied from bbox sent to osmconvert command in update-tiles.yml
+      maxBounds: [149.526157, -34.946458, 152.571173, -32.026925], // based on coords in bbox.poly
       customAttribution:
         "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
       hash: true,

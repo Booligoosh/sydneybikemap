@@ -21,8 +21,7 @@ jobs:
       - name: Download OSM data
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
-        # run: wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf -O ./tiles/Sydney.osm.pbf
-        run: ./osmconvert64 new_south_wales.osm.pbf -o=tiles/data.osm.pbf --complete-ways -b=149.526157,-34.946458,152.571173,-32.026925
+        run: ./osmconvert64 new_south_wales.osm.pbf -o=tiles/data.osm.pbf --complete-ways -B=tiles/bbox.poly
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
         uses: systemed/tilemaker@v2.3.0
