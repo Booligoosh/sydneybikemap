@@ -24,10 +24,7 @@ pAll(promises, { concurrency: CONCURRENT_UPLOADS });
 const uploadFile = async (sourceFilePath) => {
   const targetFilePath = sourceFilePath.substr(7); // Remove "output/" from start
   const result = await exec(
-    `wrangler r2 object put ${BUCKET_NAME}/${targetFilePath} --file ${sourceFilePath} --content-encoding gzip --expires "${expiryHeader}"`,
-    {
-      shell: "/bin/bash",
-    }
+    `npx wrangler r2 object put ${BUCKET_NAME}/${targetFilePath} --file ${sourceFilePath} --content-encoding gzip --expires "${expiryHeader}"`
   );
   finishedCount++;
   console.log(
