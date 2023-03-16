@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "tiles/**/*"
+    branches:
+      - "release"
   schedule:
     - cron: "0 4 * * THU"
   workflow_dispatch:
