@@ -286,7 +286,8 @@ function way_function(way)
 	-- Roads ('transportation' and 'transportation_name', plus 'transportation_name_detail')
 	if highway~="" then
 		local access = way:Find("access")
-		if access=="private" or access=="no" then return end
+		-- ME: Don't exclude access=private/no if the highway is under construction
+		if (access=="private" or access=="no") and highway ~= "construction" then return end
 
 		-- ME
 		local bicycleAccess = way:Find("bicycle")
