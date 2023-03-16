@@ -35,6 +35,8 @@ jobs:
           # Optional, other arguments
           # If not being set, default to '--verbose'
           # extra: --threads 0
+      - name: Copy Cloudflare Pages config files to output folder
+        run: cp tiles/_headers tiles/output/_headers
       # https://github.com/cloudflare/pages-action#readme
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
