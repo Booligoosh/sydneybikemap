@@ -1,4 +1,4 @@
-name: update-tiles
+name: Update tiles
 
 on:
   push:
