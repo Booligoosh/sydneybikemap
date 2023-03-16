@@ -5,7 +5,7 @@ on:
     paths:
       - "tiles/**/*"
     branches:
-      - "release"
+      - "main"
   schedule:
     - cron: "0 4 * * THU"
   workflow_dispatch:
