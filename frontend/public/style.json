@@ -15,7 +15,7 @@
       "url": "https://tiles.sydneybikemap.ethan.link/metadata.json"
     }
   },
-  "glyphs": "http://localhost:3000/glyphs/{fontstack}/{range}.pbf",
+  "glyphs": "https://sydneybikemap.ethan.link/glyphs/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
