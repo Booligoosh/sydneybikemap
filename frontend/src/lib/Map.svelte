@@ -22,6 +22,7 @@
       maxBounds: [150.83, -34.05999990000001, 151.33, -33.679999900000009], // copied from metadata.json
       customAttribution:
         "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+      hash: true,
     });
 
     // Add controls
