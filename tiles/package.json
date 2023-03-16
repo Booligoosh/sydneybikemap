@@ -2,7 +2,8 @@
   "devDependencies": {
     "dayjs": "^1.11.7",
     "glob": "^9.3.0",
-    "p-all": "^4.0.0"
+    "p-all": "^4.0.0",
+    "wrangler": "^2.12.3"
   },
   "type": "module"
 }
