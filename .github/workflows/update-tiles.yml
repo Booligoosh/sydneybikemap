@@ -33,6 +33,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - run: cd tiles
-      - run: npm install
-      - run: node ./uploadToR2.js
+      - run: cd tiles && npm install
+      - run: cd tiles && node ./uploadToR2.js
