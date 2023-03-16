@@ -8,6 +8,7 @@
 
 wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf
 # First you will need to run `docker build . -t tilemaker` in the cloned tilemaker directory somewhere else
-sudo docker run --rm -it -v $(pwd)/:/opt/input -v $(pwd)/output/:/opt/output --user "$(id -u):$(id -g)" tilemaker --input /opt/input/Sydney.osm.pbf --output /opt/output
+sudo docker run --rm -it -v $(pwd)/:/opt/input -v $(pwd)/output/:/opt/output --user "$(id -u):$(id -g)" tilemaker --input /opt/input/Sydney.osm.pbf --output /opt/output --process /opt/input/process.lua --config /opt/input/config.json
+tilemaker --input Sydney.osm.pbf.1 --output output --process process.lua --config config.json
 
 npx serve
