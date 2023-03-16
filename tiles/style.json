@@ -12,7 +12,7 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "http://localhost:3000/output/metadata.json"
+      "url": "https://pub-9dd3ef39ca764445bd640be05737e718.r2.dev/metadata.json"
     }
   },
   "glyphs": "http://localhost:3000/glyphs/{fontstack}/{range}.pbf",

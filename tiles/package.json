@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "dayjs": "^1.11.7",
+    "glob": "^9.3.0",
+    "p-all": "^4.0.0"
+  },
+  "type": "module"
+}
