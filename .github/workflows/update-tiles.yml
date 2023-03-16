@@ -9,20 +9,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  get-osm-data:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./tiles
-    steps:
-      - uses: actions/checkout@v3
-      - run: wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf
-  generate-tiles:
+  update-tiles:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: wget https://download.bbbike.org/osm/bbbike/Sydney/Sydney.osm.pbf -O ./tiles/Sydney.osm.pbf
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
-      - uses: systemed/tilemaker@v2.0.0
+      - uses: systemed/tilemaker@v2.3.0
         with:
           # Required, same to --input
           input: ./tiles/Sydney.osm.pbf
@@ -36,16 +29,10 @@ jobs:
           process: ./tiles/process.lua
           # Optional, other arguments
           # If not being set, default to '--verbose'
-          extra: --threads 0
-  upload-to-r2:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./tiles
-    steps:
-      - uses: actions/checkout@v3
+          # extra: --threads 0
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
+      - run: cd tiles
       - run: npm install
       - run: node ./uploadToR2.js
