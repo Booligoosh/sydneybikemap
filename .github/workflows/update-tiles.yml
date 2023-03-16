@@ -6,6 +6,7 @@ on:
       - "tiles/**/*"
   schedule:
     - cron: "0 4 * * THU"
+  workflow_dispatch:
 
 jobs:
   get-osm-data:
