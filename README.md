@@ -12,7 +12,7 @@ Why not all of NSW? Because it's easier to host and allows me to keep this site 
 
 The data for SydneyBikeMap comes from [OpenStreetMap](https://openstreetmap.org) (OSM) and is updated weekly. To edit the data, you will need to edit OpenStreetMap.
 
-OpenStreetMap is a community-built database of the world &mdash; it has everything from roads, to cycleways, to businesses, to park benches. Anyone can contribute &mdash; think of it like the Wikipedia of the map world. It's used by large companies including Facebook/Meta, Snapchat, Strava, Apple [and more](https://wiki.openstreetmap.org/wiki/Major_OpenStreetMap_consumers). Compared to Google Maps data, It's often updated faster and includes more data on cycle routes, since there is a community to maintain it.
+OpenStreetMap is a community-built database of the world &mdash; it has everything from roads, to cycleways, to businesses, to park benches. Anyone can contribute &mdash; think of it like the Wikipedia of the map world. It's used by large companies including Facebook/Meta, Snapchat, Strava, Apple [and more](https://welcome.openstreetmap.org/about-osm-community/consumers/). Compared to Google Maps data, It's often updated faster and includes more data on cycle routes, since there is a community to maintain it.
 
 Since this site currently updates weekly, it may take up to a week for your changes to be shown on the site.
 
