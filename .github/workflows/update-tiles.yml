@@ -25,7 +25,7 @@ jobs:
       - name: Download coastline
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
-        run: unzip -j -d tiles/coastline water-polygons-split-4326.zip
+        run: unzip -j -d coastline water-polygons-split-4326.zip
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
         uses: systemed/tilemaker@v2.3.0
@@ -44,7 +44,7 @@ jobs:
           # If not being set, default to '--verbose'
           # extra: --threads 0
       - name: Remove duplicate files
-        run: ./tiles/remove-duplicates.sh
+        run: cd tiles && ./tiles/remove-duplicates.sh
       - name: Copy Cloudflare Pages config files to output folder
         run: sudo cp ./tiles/_headers ./tiles/output/_headers && sudo cp ./tiles/_redirects ./tiles/output/_redirects && sudo cp ./tiles/water-tile.pbf ./tiles/output/water-tile.pbf
       # https://github.com/cloudflare/pages-action#readme
