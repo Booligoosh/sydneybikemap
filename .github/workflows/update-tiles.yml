@@ -22,25 +22,33 @@ jobs:
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
         run: ./osmconvert64 new_south_wales.osm.pbf -o=tiles/data.osm.pbf --complete-ways -B=tiles/bbox.poly
+      - name: Download coastline
+        run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
+      - name: Extract coastline
+        run: unzip -j -d tiles/coastline water-polygons-split-4326.zip
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
-      - name: Generate tiles
-        uses: systemed/tilemaker@v2.3.0
-        with:
-          # Required, same to --input
-          input: ./tiles/data.osm.pbf
-          # Required, same to --output. Could be a directory or a .mbtiles files
-          output: ./tiles/output
-          # Optional, same to --config
-          # If not being set, default to resources/config-openmaptiles.config
-          config: ./tiles/config.json
-          # Optional, same to --process
-          # If not being set, default to resources/process-openmaptiles.lua
-          process: ./tiles/process.lua
-          # Optional, other arguments
-          # If not being set, default to '--verbose'
-          # extra: --threads 0
+      # - name: Generate tiles
+      #   uses: systemed/tilemaker@v2.3.0
+      #   with:
+      #     # Required, same to --input
+      #     input: ./tiles/data.osm.pbf
+      #     # Required, same to --output. Could be a directory or a .mbtiles files
+      #     output: ./tiles/output
+      #     # Optional, same to --config
+      #     # If not being set, default to resources/config-openmaptiles.config
+      #     config: ./tiles/config.json
+      #     # Optional, same to --process
+      #     # If not being set, default to resources/process-openmaptiles.lua
+      #     process: ./tiles/process.lua
+      #     # Optional, other arguments
+      #     # If not being set, default to '--verbose'
+      #     # extra: --threads 0
+      - name: Fail
+        run: abcdefg
+      - name: Remove duplicate files
+        run: ./tiles/remove-duplicates.sh
       - name: Copy Cloudflare Pages config files to output folder
-        run: sudo cp ./tiles/_headers ./tiles/output/_headers
+        run: sudo cp ./tiles/_headers ./tiles/output/_headers && sudo cp ./tiles/_redirects ./tiles/output/_redirects && sudo cp ./tiles/water-tile.pbf ./tiles/output/water-tile.pbf
       # https://github.com/cloudflare/pages-action#readme
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1

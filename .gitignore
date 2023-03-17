@@ -4,3 +4,4 @@ output/
 node_modules
 .env
 osmconvert64
+coastline
