@@ -27,24 +27,22 @@ jobs:
       - name: Extract coastline
         run: unzip -j -d tiles/coastline water-polygons-split-4326.zip
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
-      # - name: Generate tiles
-      #   uses: systemed/tilemaker@v2.3.0
-      #   with:
-      #     # Required, same to --input
-      #     input: ./tiles/data.osm.pbf
-      #     # Required, same to --output. Could be a directory or a .mbtiles files
-      #     output: ./tiles/output
-      #     # Optional, same to --config
-      #     # If not being set, default to resources/config-openmaptiles.config
-      #     config: ./tiles/config.json
-      #     # Optional, same to --process
-      #     # If not being set, default to resources/process-openmaptiles.lua
-      #     process: ./tiles/process.lua
-      #     # Optional, other arguments
-      #     # If not being set, default to '--verbose'
-      #     # extra: --threads 0
-      - name: Fail
-        run: abcdefg
+      - name: Generate tiles
+        uses: systemed/tilemaker@v2.3.0
+        with:
+          # Required, same to --input
+          input: ./tiles/data.osm.pbf
+          # Required, same to --output. Could be a directory or a .mbtiles files
+          output: ./tiles/output
+          # Optional, same to --config
+          # If not being set, default to resources/config-openmaptiles.config
+          config: ./tiles/config.json
+          # Optional, same to --process
+          # If not being set, default to resources/process-openmaptiles.lua
+          process: ./tiles/process.lua
+          # Optional, other arguments
+          # If not being set, default to '--verbose'
+          # extra: --threads 0
       - name: Remove duplicate files
         run: ./tiles/remove-duplicates.sh
       - name: Copy Cloudflare Pages config files to output folder
