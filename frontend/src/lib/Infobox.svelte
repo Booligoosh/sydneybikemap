@@ -34,6 +34,18 @@
         >
         contributors
       </div>
+      <div class="text-xs mt-0.5">
+        <a href="https://github.com/booligoosh/sydneybikemap" target="_blank"
+          >View code</a
+        >
+        |
+        <a
+          href="https://github.com/Booligoosh/sydneybikemap#improving-the-data"
+          target="_blank">Improve data</a
+        >
+        |
+        <a href="mailto:sydneybikemap@ethan.link">Contact</a>
+      </div>
     </section>
   </div>
 </div>
