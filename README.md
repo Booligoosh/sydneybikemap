@@ -18,7 +18,7 @@ Since this site currently updates weekly, it may take up to a week for your chan
 
 ### How _not_ to contribute to OpenStreetMap
 
-Before I give you some guidance on how to contribute, let's quickly cover how _not_ to contribute. OpenStreetMap is used by a much wider variety of applications that just this site, so it's important you treat it as if you were editing a Wikipedia article.
+Before I give you some guidance on how to contribute, let's quickly cover how _not_ to contribute. OpenStreetMap is used by a much wider variety of applications than just this site, so it's important you treat it as if you were editing a Wikipedia article.
 
 - **Don't edit the map based on old memories, or from copyrighted sources such as Google StreetView imagery.** Only edit based on the satellite imagery and other information available to you within the editor, or based on going and surveying it yourself in real life.
 - **Don't map infrastructure you wish was there.** Only map things that are actually there.
