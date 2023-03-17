@@ -1,0 +1,29 @@
+<script lang="ts">
+  import LegendItem from "./LegendItem.svelte";
+</script>
+
+<section>
+  <h2 class="font-bold mb-1">Legend</h2>
+  <div class="grid gap-2 grid-cols-[auto,1fr] items-center">
+    <LegendItem
+      text="Separated cycleway"
+      color="hsl(141, 54%, 28%)"
+      lineStyle="solid"
+    />
+    <LegendItem
+      text="Shared path"
+      color="hsl(211, 61%, 56%)"
+      lineStyle="solid"
+    />
+    <LegendItem
+      text="Cycleway under construction"
+      color="hsl(6, 93%, 71%)"
+      lineStyle="dashed"
+    />
+    <LegendItem
+      text="Planned cycleway"
+      color="hsl(300, 50%, 70%)"
+      lineStyle="dashed"
+    />
+  </div>
+</section>

@@ -21,8 +21,8 @@
       zoom: 9.15, // starting zoom
       maxBounds: [149.526157, -34.946458, 152.571173, -32.026925], // based on coords in bbox.poly
       maxZoom: 20,
-      customAttribution:
-        "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+      // customAttribution:
+      //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
       hash: true,
     });
 
@@ -49,9 +49,6 @@
 <style>
   .map {
     position: relative;
-    width: 100%;
-    height: 100vh;
-    /* See https://web.dev/viewport-units/ */
-    height: 100dvh;
+    flex-grow: 1;
   }
 </style>
