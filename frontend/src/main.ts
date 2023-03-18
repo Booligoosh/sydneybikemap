@@ -7,6 +7,7 @@ import { registerSW } from "virtual:pwa-register";
 let updateSW;
 
 updateSW = registerSW({
+  immediate: true,
   onNeedRefresh() {
     // For now, just refresh straight away. Doing this rather than the autoUpdate
     // behaviour as future-proofing in case we want to display a prompt in future.
