@@ -1,0 +1,10 @@
+{
+  "public": "output",
+  "rewrites": [{ "source": "/**", "destination": "/water-tile.pbf" }],
+  "headers": [
+    {
+      "source": "/**",
+      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+    }
+  ]
+}
