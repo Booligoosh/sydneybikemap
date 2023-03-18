@@ -417,12 +417,21 @@ const mapStyle: StyleSpecification = {
         "all",
         ["==", "$type", "LineString"],
         ["==", "brunnel", "tunnel"],
-        ["in", "class", "primary", "secondary", "tertiary", "trunk"],
+        [
+          "in",
+          "class",
+          "motorway",
+          "primary",
+          "secondary",
+          "tertiary",
+          "trunk",
+        ],
       ],
       layout: { "line-cap": "butt", "line-join": "miter" },
       paint: {
         "line-color": "#fff",
-        "line-dasharray": [0.28, 0.14],
+        "line-opacity": 0.4,
+        // "line-dasharray": [0.28, 0.14],
         "line-width": {
           base: 1.4,
           stops: [
@@ -563,6 +572,7 @@ const mapStyle: StyleSpecification = {
         "all",
         ["==", "$type", "LineString"],
         ["==", "class", "motorway"],
+        ["!=", "brunnel", "tunnel"],
       ],
       layout: { "line-cap": "round", "line-join": "round" },
       paint: {
