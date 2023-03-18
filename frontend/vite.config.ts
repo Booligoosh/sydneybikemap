@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     svelte(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt",
       manifest: {
         id: "sydneybikemap",
         name: "SydneyBikeMap",

@@ -1,6 +1,19 @@
 import "./app.css";
 import "@fontsource/inter/variable.css";
 import App from "./App.svelte";
+import { registerSW } from "virtual:pwa-register";
+
+// Register SW
+let updateSW;
+
+updateSW = registerSW({
+  onNeedRefresh() {
+    // For now, just refresh straight away. Doing this rather than the autoUpdate
+    // behaviour as future-proofing in case we want to display a prompt in future.
+
+    if (updateSW) updateSW(true);
+  },
+});
 
 // Future proof with a version so we can perform 'migrations' or show explainers
 // about a change in visualisation to users who were used to something else.
