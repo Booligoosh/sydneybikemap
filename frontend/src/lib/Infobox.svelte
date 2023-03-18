@@ -45,6 +45,11 @@
         >
         |
         <a href="mailto:sydneybikemap@ethan.link">Contact</a>
+        |
+        <a
+          href="https://github.com/Booligoosh/sydneybikemap#roadmap"
+          target="_blank">Roadmap</a
+        >
       </div>
     </section>
   </div>

@@ -39,5 +39,24 @@ With that out of the way, let's get to the fun part! There's so many resources o
 - [Discord][discord] - Has various channels where you can get assistance. There is an oceania-specific one called `#oceania`.
 - [r/openstreetmap](https://reddit.com/r/openstreetmap) - Questions and discussion related to OSM
 
+## Roadmap
+
+(or should I say Cyclewaymap 😄)
+
+This project is far from done, there's lots of things I want to add!
+
+- [x] Separated cycleways
+- [x] Shared paths
+- [x] Cycleways under construction
+- [x] Planned/proposed cycleways
+- [ ] &le;20km/h streets (cause these are nearly as relaxed as cycleways)
+- [ ] Better handling/displaying on one-way streets and contraflows
+- [ ] Bike parking
+- [ ] Drinking water (for when you're out on a ride)
+- [ ] Toilets (for when you're out on a ride)
+- [ ] Public bike pumps
+
+Feel free to [contact me][contact] if you have any other ideas/requests (some may be more feasible than others).
+
 [discord]: https://discord.gg/openstreetmap
 [contact]: mailto:sydneybikemap@ethan.link
