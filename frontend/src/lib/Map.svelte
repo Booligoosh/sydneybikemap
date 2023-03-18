@@ -24,7 +24,7 @@
       maxZoom: 20,
       // customAttribution:
       //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-      hash: true,
+      hash: "map",
     });
 
     // Add controls
