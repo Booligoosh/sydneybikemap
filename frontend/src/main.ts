@@ -17,6 +17,9 @@ updateSW = registerSW({
   onOfflineReady() {
     console.log("App is ready for offline use");
   },
+  onRegisteredSW() {
+    console.log("Service worker has been registered");
+  },
 });
 
 // Future proof with a version so we can perform 'migrations' or show explainers
