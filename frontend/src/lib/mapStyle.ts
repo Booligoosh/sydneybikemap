@@ -4,6 +4,9 @@
 
 import type { StyleSpecification } from "maplibre-gl";
 
+// Constants for repeated values
+const WATER_COLOR = "hsl(205, 61%, 83%)";
+
 // Map style
 const mapStyle: StyleSpecification = {
   version: 8,
@@ -79,7 +82,7 @@ const mapStyle: StyleSpecification = {
         ["!=", "brunnel", "tunnel"],
       ],
       layout: { visibility: "visible" },
-      paint: { "fill-color": "hsl(205, 56%, 73%)" },
+      paint: { "fill-color": WATER_COLOR },
     },
     {
       id: "water_intermittent",
@@ -88,7 +91,7 @@ const mapStyle: StyleSpecification = {
       "source-layer": "water",
       filter: ["all", ["==", "$type", "Polygon"], ["==", "intermittent", 1]],
       layout: { visibility: "visible" },
-      paint: { "fill-color": "hsl(205, 56%, 73%)", "fill-opacity": 0.7 },
+      paint: { "fill-color": WATER_COLOR, "fill-opacity": 0.7 },
     },
     {
       id: "landcover-ice-shelf",
@@ -168,7 +171,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: { visibility: "visible" },
       paint: {
-        "line-color": "hsl(205, 56%, 73%)",
+        "line-color": WATER_COLOR,
         "line-dasharray": [3, 3],
         "line-gap-width": {
           stops: [
@@ -199,7 +202,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: { visibility: "visible" },
       paint: {
-        "line-color": "hsl(205, 56%, 73%)",
+        "line-color": WATER_COLOR,
         "line-opacity": 1,
         "line-width": {
           base: 1.4,
@@ -223,7 +226,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: { visibility: "visible" },
       paint: {
-        "line-color": "hsl(205, 56%, 73%)",
+        "line-color": WATER_COLOR,
         "line-dasharray": [2, 1],
         "line-opacity": 1,
         "line-width": {
@@ -741,7 +744,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: { "line-cap": "round", "line-join": "round" },
       paint: {
-        "line-color": "hsl(205, 56%, 73%)",
+        "line-color": WATER_COLOR,
         "line-width": {
           base: 1.55,
           stops: [
