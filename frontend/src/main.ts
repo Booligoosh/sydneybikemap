@@ -9,10 +9,13 @@ let updateSW;
 updateSW = registerSW({
   immediate: true,
   onNeedRefresh() {
+    console.log("New version is available");
     // For now, just refresh straight away. Doing this rather than the autoUpdate
     // behaviour as future-proofing in case we want to display a prompt in future.
-
     if (updateSW) updateSW(true);
+  },
+  onOfflineReady() {
+    console.log("App is ready for offline use");
   },
 });
 
