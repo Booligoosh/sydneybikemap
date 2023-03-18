@@ -13,7 +13,12 @@
   <section>
     <button
       class="group/header grid grid-cols-[1fr,auto] w-full text-left p-3"
-      on:click={() => (expanded = !expanded)}
+      on:click={() => {
+        // Toggle expanded state
+        expanded = !expanded;
+        // Trigger map to resize (as on sm and below, its area will change when the infobox is expanded/collapsed)
+        setTimeout(() => window.dispatchEvent(new Event("resize")), 0);
+      }}
     >
       <Logo />
       <div
@@ -24,9 +29,12 @@
       </div>
     </button>
   </section>
-  <!-- Based on this trick https://stackoverflow.com/a/8331169-->
+  <!--
+    Based on this trick https://stackoverflow.com/a/8331169
+    Don't transition at sm and below as it leads to janky map resizing
+  -->
   <div
-    class="transition-[max-height] overflow-hidden"
+    class="sm:transition-[max-height] overflow-hidden"
     style:max-height={expanded ? "100vh" : 0}
   >
     <div class="flex flex-col gap-3 p-3 pt-0">
