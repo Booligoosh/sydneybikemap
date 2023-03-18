@@ -12,12 +12,12 @@
 >
   <section>
     <button
-      class="grid grid-cols-[1fr,auto] w-full text-left"
+      class="group/header grid grid-cols-[1fr,auto] w-full text-left"
       on:click={() => (expanded = !expanded)}
     >
       <Logo />
       <div
-        class="h-full justify-self-end border rounded-full aspect-square flex justify-center items-center hover:bg-gray-50 active:bg-gray-100 transition-transform text-gray-600"
+        class="h-full justify-self-end border rounded-full aspect-square flex justify-center items-center group-hover/header:bg-gray-50 group-active/header:bg-gray-100 transition-transform text-gray-600"
         style:transform={expanded ? "rotate(180deg)" : ""}
       >
         <ChevronDownIcon class="w-5" />
