@@ -51,12 +51,15 @@ This project is far from done, there's lots of things I want to add!
 - [x] Planned/proposed cycleways
 - [ ] &le;20km/h streets (cause these are nearly as relaxed as cycleways)
 - [ ] Better handling/displaying on one-way streets and contraflows
+- [ ] Make train lines & stations more prominent (to plan bike+train journeys)
 - [ ] Bike parking
 - [ ] Drinking water (for when you're out on a ride)
 - [ ] Toilets (for when you're out on a ride)
 - [ ] Public bike pumps
 
 Feel free to [contact me][contact] if you have any other ideas/requests (some may be more feasible than others).
+
+Not looking to support routing/navigation/directions for now, as that's a whole different can of worms.
 
 [discord]: https://discord.gg/openstreetmap
 [contact]: mailto:sydneybikemap@ethan.link
