@@ -311,9 +311,9 @@ function way_function(way)
 			or (Set {"yes", "designated"}[bicycleAccess] and Set {"cycleway", "path", "footway", "pedestrian"}[highway])
 			then
 				if (Set {"footway", "pedestrian"}[highway]) or (Set {"yes", "designated"}[footAccess] and segregated ~= "yes") then
-					h = "sharedPath"; minzoom = 9
+					h = "sharedPath"; minzoom = 6
 				elseif highway == "cycleway" then
-					h = "separatedCycleway"; minzoom = 9
+					h = "separatedCycleway"; minzoom = 6
 				else
 					print("ANOMALY")
 				end
@@ -347,10 +347,10 @@ function way_function(way)
 
 		-- ME
 		if highway == "proposed" and proposed == "cycleway" then
-			h = "proposedCycleway"; minzoom = 9
+			h = "proposedCycleway"; minzoom = 6
 		end
 		if highway == "construction" and construction == "cycleway" then
-			h = "constructionCycleway"; minzoom = 9
+			h = "constructionCycleway"; minzoom = 6
 		end
 		-- END ME
 
