@@ -4,7 +4,7 @@
   import Map from "./lib/Map.svelte";
 </script>
 
-<main class="flex flex-col">
+<main class="flex flex-col select-none">
   <Infobox />
   <Map />
 </main>
