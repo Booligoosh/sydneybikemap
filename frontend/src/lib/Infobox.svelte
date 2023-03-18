@@ -10,16 +10,18 @@
 <div
   class="sm:fixed inset-5 z-10 sm:rounded-lg bg-white p-3 w-full sm:w-auto sm:max-w-sm sm:shadow-md border-gray-500 h-fit flex flex-col gap-3 mx-auto lg:mx-0"
 >
-  <section class="flex justify-between">
-    <Logo />
+  <section>
     <button
-      class="border rounded-full aspect-square flex justify-center items-center hover:bg-gray-50 active:bg-gray-100"
+      class="grid grid-cols-[1fr,auto] w-full text-left"
       on:click={() => (expanded = !expanded)}
     >
-      <ChevronDownIcon
-        class="transition-all w-5 text-gray-600"
-        style={expanded ? "transform: rotate(180deg)" : ""}
-      />
+      <Logo />
+      <div
+        class="h-full justify-self-end border rounded-full aspect-square flex justify-center items-center hover:bg-gray-50 active:bg-gray-100 transition-transform text-gray-600"
+        style:transform={expanded ? "rotate(180deg)" : ""}
+      >
+        <ChevronDownIcon class="w-5" />
+      </div>
     </button>
   </section>
   <div style:display={expanded ? "contents" : "none"}>
