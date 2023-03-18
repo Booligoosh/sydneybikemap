@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     svelte(),
     VitePWA({
+      filename: "serviceWorker.js",
       registerType: "prompt",
       manifest: {
         id: "sydneybikemap",
