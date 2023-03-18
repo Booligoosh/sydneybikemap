@@ -7,6 +7,7 @@
     ScaleControl,
   } from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
+  import mapStyle from "./mapStyle";
 
   let map;
   let mapContainer;
@@ -16,7 +17,7 @@
 
     map = new Map({
       container: mapContainer,
-      style: window.location.origin + "/style.json", // stylesheet location
+      style: mapStyle,
       center: [151.0409, -33.8455], // starting position [lng, lat]
       zoom: 9.15, // starting zoom
       maxBounds: [149.536285, -34.927346, 152.571173, -32.231172], // based on coords in bbox.poly
