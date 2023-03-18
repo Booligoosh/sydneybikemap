@@ -5,3 +5,11 @@
 a {
   @apply hover:underline text-blue-600 hover:text-blue-800 active:text-blue-800;
 }
+
+body {
+  /**
+  From https://dev.to/oskarlarsson/designing-native-like-progressive-web-apps-for-ios-510o
+  Also affects Chrome, despite the -webkit prefix
+  */
+  -webkit-tap-highlight-color: transparent;
+}
