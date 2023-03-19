@@ -22,16 +22,6 @@ updateSW = registerSW({
   },
 });
 
-// Future proof with a version so we can perform 'migrations' or show explainers
-// about a change in visualisation to users who were used to something else.
-//
-// For now, we're using the presence of this (don't care about the number) to see
-// if the user has visited the site before, so if we should start the infobox as
-// expanded or collapsed.
-//
-// This will always get set *after* the initial render, which is what we want.
-localStorage.setItem("lastVisitedVersion", "1");
-
 // Add event listener to persist hash to localStorage on change
 // See https://stackoverflow.com/a/64927639
 window.history.replaceState = new Proxy(window.history.replaceState, {
