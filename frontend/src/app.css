@@ -13,3 +13,12 @@ body {
   */
   -webkit-tap-highlight-color: transparent;
 }
+
+/**
+Disable pull-to-refresh as maps apps generally don't have that feature (and the data updates rarely)
+From https://www.matuzo.at/blog/2022/100daysof-day53/
+*/
+html,
+body {
+  overscroll-behavior: none;
+}
