@@ -8,6 +8,8 @@
   } from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
   import mapStyle from "./mapStyle";
+  import lightRailIcon from "../assets/map-icons/lightrail.png";
+  import trainIcon from "../assets/map-icons/train.png";
 
   let map;
   let mapContainer;
@@ -25,6 +27,17 @@
       // customAttribution:
       //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
       hash: "map",
+    });
+
+    // Load images
+    // TODO: Make a sprite sheet instead
+    map.loadImage(trainIcon, (error, image) => {
+      if (error) throw error;
+      map.addImage("train_icon", image, { sdf: false });
+    });
+    map.loadImage(lightRailIcon, (error, image) => {
+      if (error) throw error;
+      map.addImage("light_rail_icon", image, { sdf: false });
     });
 
     // Add controls

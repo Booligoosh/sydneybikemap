@@ -107,8 +107,8 @@ function node_function(node)
 	end
 
 	-- Write 'poi'
-	local rank, class, subclass = GetPOIRank(node)
-	if rank then WritePOI(node,class,subclass,rank) end
+	local rank, class, subclass, subsubclass = GetPOIRank(node)
+	if rank then WritePOI(node,class,subclass,subsubclass,rank) end
 
 	-- Write 'mountain_peak' and 'water_name'
 	local natural = node:Find("natural")
@@ -563,8 +563,8 @@ function way_function(way)
 	elseif leisure=="nature_reserve" then way:Layer("park",true); way:Attribute("class",leisure ); SetNameAttributes(way) end
 
 	-- POIs ('poi' and 'poi_detail')
-	local rank, class, subclass = GetPOIRank(way)
-	if rank then WritePOI(way,class,subclass,rank); return end
+	local rank, class, subclass, subsubclass = GetPOIRank(way)
+	if rank then WritePOI(way,class,subclass,subsubclass,rank); return end
 
 	-- Catch-all
 	if (building~="" or write_name) and way:Holds("name") then
@@ -592,7 +592,7 @@ end
 -- Common functions
 
 -- Write a way centroid to POI layer
-function WritePOI(obj,class,subclass,rank)
+function WritePOI(obj,class,subclass,subsubclass,rank)
 	local layer = "poi"
 	if rank>4 then layer="poi_detail" end
 	obj:LayerAsCentroid(layer)
@@ -600,6 +600,7 @@ function WritePOI(obj,class,subclass,rank)
 	obj:AttributeNumeric("rank", rank)
 	obj:Attribute("class", class)
 	obj:Attribute("subclass", subclass)
+	if subsubclass then obj:Attribute("subsubclass", subsubclass) end
 end
 
 -- Set name attributes on any object
@@ -657,9 +658,9 @@ function SetMinZoomByArea(way)
 end
 
 -- Calculate POIs (typically rank 1-4 go to 'poi' z12-14, rank 5+ to 'poi_detail' z14)
--- returns rank, class, subclass
+-- returns rank, class, subclass, subsubclass
 function GetPOIRank(obj)
-	local k,list,v,class,rank
+	local k,list,v,class,rank,subsubclass
 
 	-- Can we find the tag?
 	for k,list in pairs(poiTags) do
@@ -667,16 +668,17 @@ function GetPOIRank(obj)
 			v = obj:Find(k)	-- k/v are the OSM tag pair
 			class = poiClasses[v] or k
 			rank  = poiClassRanks[class] or 25
-			return rank, class, v
+			subsubclass = obj:Find(v)
+			return rank, class, v, subsubclass
 		end
 	end
 
 	-- Catch-all for shops
 	local shop = obj:Find("shop")
-	if shop~="" then return poiClassRanks['shop'], "shop", shop end
+	if shop~="" then return poiClassRanks['shop'], "shop", shop, nil end
 
 	-- Nothing found
-	return nil,nil,nil
+	return nil,nil,nil, nil
 end
 
 function SetBuildingHeightAttributes(way)

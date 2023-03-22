@@ -6,6 +6,23 @@ import type { StyleSpecification } from "maplibre-gl";
 
 // Constants for repeated values
 const WATER_COLOR = "hsl(205, 61%, 83%)";
+const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
+  "text-anchor": "top",
+  "text-field": "{name:latin}\n{name:nonlatin}",
+  "text-font": ["Noto Sans Regular"],
+  "text-max-width": 8,
+  "text-offset": [0, 0.5],
+  "text-size": 11,
+  visibility: "visible",
+  "icon-size": 0.04,
+  "icon-rotate": 0,
+};
+const PUBLIC_TRANSPORT_STOP_STYLE_PAINT = {
+  "text-color": "#666",
+  "text-halo-blur": 1,
+  "text-halo-color": "rgba(255,255,255,0.75)",
+  "text-halo-width": 1,
+};
 
 // Map style
 const mapStyle: StyleSpecification = {
@@ -1040,6 +1057,48 @@ const mapStyle: StyleSpecification = {
         "text-halo-blur": 0,
         "text-halo-color": "hsl(0, 0%, 100%)",
         "text-halo-width": 2,
+      },
+    },
+    {
+      id: "train_station",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "poi",
+      minzoom: 9,
+      filter: [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "class", "railway"],
+        ["==", "subclass", "station"],
+        ["!=", "subsubclass", "light_rail"],
+      ],
+      layout: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
+        "icon-image": "train_icon",
+      },
+      paint: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
+      },
+    },
+    {
+      id: "light_rail_stop",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "poi",
+      minzoom: 9,
+      filter: [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "class", "railway"],
+        ["==", "subclass", "station"],
+        ["==", "subsubclass", "light_rail"],
+      ],
+      layout: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
+        "icon-image": "light_rail_icon",
+      },
+      paint: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
       },
     },
     {
