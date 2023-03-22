@@ -8,8 +8,9 @@
   } from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
   import mapStyle from "./mapStyle";
-  import lightRailIcon from "../assets/map-icons/lightrail.png";
   import trainIcon from "../assets/map-icons/train.png";
+  import metroIcon from "../assets/map-icons/metro.png";
+  import lightRailIcon from "../assets/map-icons/lightrail.png";
 
   let map;
   let mapContainer;
@@ -34,6 +35,10 @@
     map.loadImage(trainIcon, (error, image) => {
       if (error) throw error;
       map.addImage("train_icon", image, { sdf: false });
+    });
+    map.loadImage(metroIcon, (error, image) => {
+      if (error) throw error;
+      map.addImage("metro_icon", image, { sdf: false });
     });
     map.loadImage(lightRailIcon, (error, image) => {
       if (error) throw error;

@@ -1071,10 +1071,32 @@ const mapStyle: StyleSpecification = {
         ["==", "class", "railway"],
         ["==", "subclass", "station"],
         ["!=", "subsubclass", "light_rail"],
+        ["!=", "subsubclass", "subway"],
       ],
       layout: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
         "icon-image": "train_icon",
+      },
+      paint: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
+      },
+    },
+    {
+      id: "metro_station",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "poi",
+      minzoom: 9,
+      filter: [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "class", "railway"],
+        ["==", "subclass", "station"],
+        ["==", "subsubclass", "subway"],
+      ],
+      layout: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
+        "icon-image": "metro_icon",
       },
       paint: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
