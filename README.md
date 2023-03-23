@@ -51,7 +51,7 @@ This project is far from done, there's lots of things I want to add!
 - [x] Planned/proposed cycleways
 - [ ] &le;20km/h streets (cause these are nearly as relaxed as cycleways)
 - [ ] Better handling/displaying on one-way streets and contraflows
-- [ ] Make train lines & stations more prominent (to plan bike+train journeys)
+- [x] Make train lines & stations more prominent (to plan bike+train journeys)
 - [x] Better styling for motorway tunnels
 - [ ] Bike parking
 - [ ] Drinking water (for when you're out on a ride)
