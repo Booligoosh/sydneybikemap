@@ -647,7 +647,7 @@ const mapStyle: StyleSpecification = {
       type: "line",
       source: "openmaptiles",
       "source-layer": "transportation",
-      filter: ["==", "class", "rail"],
+      filter: ["in", "class", "rail", "light_rail", "subway"],
       layout: { visibility: "visible" },
       paint: {
         "line-color": "hsl(34, 12%, 66%)",
