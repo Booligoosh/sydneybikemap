@@ -36,6 +36,12 @@ const PUBLIC_TRANSPORT_STOP_STYLE_PAINT = {
   "text-halo-blur": 0,
   "text-halo-color": "hsl(0, 0%, 100%)",
   "text-halo-width": 2,
+  "icon-opacity": {
+    stops: [
+      [9, 0.5],
+      [12, 1],
+    ],
+  },
 };
 
 // Map style
