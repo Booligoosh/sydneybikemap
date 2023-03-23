@@ -1,5 +1,8 @@
 <script lang="ts">
+  import LegendInfoModal from "./LegendInfoModal.svelte";
   import LegendItem from "./LegendItem.svelte";
+
+  let infoModalType: "separatedCycleway" | "sharedPath" | null = null;
 </script>
 
 <section>
@@ -9,11 +12,15 @@
       text="Separated cycleway"
       color="hsl(141, 54%, 28%)"
       lineStyle="solid"
+      showInfoBtn={true}
+      on:infoclick={() => (infoModalType = "separatedCycleway")}
     />
     <LegendItem
       text="Shared path"
       color="hsl(211, 61%, 56%)"
       lineStyle="solid"
+      showInfoBtn={true}
+      on:infoclick={() => (infoModalType = "sharedPath")}
     />
     <LegendItem
       text="Cycleway under construction"
@@ -26,4 +33,8 @@
       lineStyle="dashed"
     />
   </div>
+  <LegendInfoModal
+    type={infoModalType}
+    on:close={() => (infoModalType = null)}
+  />
 </section>
