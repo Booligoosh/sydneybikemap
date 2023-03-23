@@ -6,6 +6,9 @@ import type { StyleSpecification } from "maplibre-gl";
 
 // Constants for repeated values
 const WATER_COLOR = "hsl(205, 61%, 83%)";
+
+const SUBURB_NAMES_MAX_ZOOM = 15;
+
 const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
   "text-anchor": "top",
   // Only show names at zoom 12 and below
@@ -19,18 +22,20 @@ const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
   "icon-size": {
     stops: [
       // when zoom is 9
-      [9, 0.02],
-      // when zoom is 14
-      [14, 0.04],
+      [9, 0.015],
+      // when zoom is 15
+      [15, 0.04],
     ],
   },
   "icon-rotate": 0,
+  "icon-overlap": "always",
+  "text-optional": true,
 };
 const PUBLIC_TRANSPORT_STOP_STYLE_PAINT = {
-  "text-color": "#666",
-  "text-halo-blur": 1,
-  "text-halo-color": "rgba(255,255,255,0.75)",
-  "text-halo-width": 1,
+  "text-color": "hsl(0, 0%, 25%)",
+  "text-halo-blur": 0,
+  "text-halo-color": "hsl(0, 0%, 100%)",
+  "text-halo-width": 2,
 };
 
 // Map style
@@ -1042,12 +1047,44 @@ const mapStyle: StyleSpecification = {
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "place",
-      minzoom: 8,
+      minzoom: 13,
       filter: [
         "all",
         ["==", "$type", "Point"],
-        ["!in", "class", "city", "state", "country", "continent"],
+        [
+          "!in",
+          "class",
+          "suburb",
+          "town",
+          "city",
+          "state",
+          "country",
+          "continent",
+        ],
       ],
+      layout: {
+        "text-anchor": "center",
+        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-font": ["Noto Sans Regular"],
+        "text-max-width": 6,
+        "text-size": 11,
+        visibility: "visible",
+      },
+      paint: {
+        "text-color": "#666",
+        "text-halo-blur": 0,
+        "text-halo-color": "hsl(0, 0%, 100%)",
+        "text-halo-width": 1,
+      },
+    },
+    {
+      id: "place_label_suburb",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "place",
+      minzoom: 8,
+      maxzoom: SUBURB_NAMES_MAX_ZOOM,
+      filter: ["all", ["==", "$type", "Point"], ["==", "class", "suburb"]],
       layout: {
         "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
@@ -1055,17 +1092,27 @@ const mapStyle: StyleSpecification = {
         "text-max-width": 6,
         "text-size": {
           stops: [
-            [6, 10],
-            [12, 14],
+            [11, 10],
+            [14, 13],
           ],
         },
         visibility: "visible",
       },
       paint: {
-        "text-color": "hsl(0, 0%, 25%)",
-        "text-halo-blur": 0,
-        "text-halo-color": "hsl(0, 0%, 100%)",
-        "text-halo-width": 2,
+        "text-color": "#666",
+        "text-halo-blur": {
+          stops: [
+            [11, 1],
+            [14, 0],
+          ],
+        },
+        "text-halo-color": "rgba(255,255,255,0.75)",
+        "text-halo-width": {
+          stops: [
+            [11, 1],
+            [14, 2],
+          ],
+        },
       },
     },
     {
@@ -1126,6 +1173,8 @@ const mapStyle: StyleSpecification = {
       ],
       layout: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
+        // Only show names at zoom 13 and below
+        "text-field": ["step", ["zoom"], "", 13, ["get", "name:latin"]],
         "icon-image": "light_rail_icon",
       },
       paint: {
@@ -1133,11 +1182,38 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
+      id: "place_label_town",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "place",
+      maxzoom: SUBURB_NAMES_MAX_ZOOM,
+      filter: ["all", ["==", "$type", "Point"], ["==", "class", "town"]],
+      layout: {
+        "text-anchor": "center",
+        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-font": ["Noto Sans Regular"],
+        "text-max-width": 6,
+        "text-size": {
+          stops: [
+            [6, 10],
+            [12, 14],
+          ],
+        },
+        visibility: "visible",
+      },
+      paint: {
+        "text-color": "hsl(0, 0%, 0%)",
+        "text-halo-blur": 0,
+        "text-halo-color": "hsla(0, 0%, 100%, 0.75)",
+        "text-halo-width": 2,
+      },
+    },
+    {
       id: "place_label_city",
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "place",
-      maxzoom: 16,
+      maxzoom: SUBURB_NAMES_MAX_ZOOM,
       filter: ["all", ["==", "$type", "Point"], ["==", "class", "city"]],
       layout: {
         "text-field": "{name:latin}\n{name:nonlatin}",
