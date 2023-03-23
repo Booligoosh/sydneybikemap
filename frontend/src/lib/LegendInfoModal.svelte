@@ -1,9 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import Modal from "./Modal.svelte";
-  import separatedCycleway1 from "../assets/infra-examples/separatedCycleway1.jpg?w=928&h=696";
-  import sharedPath1 from "../assets/infra-examples/sharedPath1.jpg?w=928&h=696";
-  import sharedPath2 from "../assets/infra-examples/sharedPath2.jpg?w=928&h=696";
+  import separatedCycleway1 from "../assets/infra-examples/separatedCycleway1.jpg?w=928&h=696&imagetools";
+  import sharedPath1 from "../assets/infra-examples/sharedPath1.jpg?w=928&h=696&imagetools";
+  import sharedPath2 from "../assets/infra-examples/sharedPath2.jpg?w=928&h=696&imagetools";
 
   export let type: "separatedCycleway" | "sharedPath" | null;
 
