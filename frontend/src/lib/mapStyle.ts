@@ -1202,7 +1202,7 @@ const mapStyle: StyleSpecification = {
         visibility: "visible",
       },
       paint: {
-        "text-color": "hsl(0, 0%, 0%)",
+        "text-color": "hsl(0, 0%, 25%)",
         "text-halo-blur": 0,
         "text-halo-color": "hsla(0, 0%, 100%, 0.75)",
         "text-halo-width": 2,
