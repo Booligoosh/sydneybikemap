@@ -595,6 +595,7 @@ end
 function WritePOI(obj,class,subclass,subsubclass,rank)
 	local layer = "poi"
 	if rank>4 then layer="poi_detail" end
+	if class == "railway" and subclass == "station" then layer="transportation_name" end -- ME
 	obj:LayerAsCentroid(layer)
 	SetNameAttributes(obj)
 	obj:AttributeNumeric("rank", rank)

@@ -8,13 +8,22 @@ import type { StyleSpecification } from "maplibre-gl";
 const WATER_COLOR = "hsl(205, 61%, 83%)";
 const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
   "text-anchor": "top",
-  "text-field": "{name:latin}\n{name:nonlatin}",
+  // Only show names at zoom 12 and below
+  "text-field": ["step", ["zoom"], "", 12, ["get", "name:latin"]],
+  // "text-field": "{name:latin}\n{name:nonlatin}",
   "text-font": ["Noto Sans Regular"],
   "text-max-width": 8,
   "text-offset": [0, 0.5],
   "text-size": 11,
   visibility: "visible",
-  "icon-size": 0.04,
+  "icon-size": {
+    stops: [
+      // when zoom is 9
+      [9, 0.02],
+      // when zoom is 14
+      [14, 0.04],
+    ],
+  },
   "icon-rotate": 0,
 };
 const PUBLIC_TRANSPORT_STOP_STYLE_PAINT = {
@@ -1063,7 +1072,7 @@ const mapStyle: StyleSpecification = {
       id: "train_station",
       type: "symbol",
       source: "openmaptiles",
-      "source-layer": "poi",
+      "source-layer": "transportation_name",
       minzoom: 9,
       filter: [
         "all",
@@ -1085,7 +1094,7 @@ const mapStyle: StyleSpecification = {
       id: "metro_station",
       type: "symbol",
       source: "openmaptiles",
-      "source-layer": "poi",
+      "source-layer": "transportation_name",
       minzoom: 9,
       filter: [
         "all",
@@ -1106,7 +1115,7 @@ const mapStyle: StyleSpecification = {
       id: "light_rail_stop",
       type: "symbol",
       source: "openmaptiles",
-      "source-layer": "poi",
+      "source-layer": "transportation_name",
       minzoom: 9,
       filter: [
         "all",
