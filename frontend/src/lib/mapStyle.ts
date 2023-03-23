@@ -1000,7 +1000,7 @@ const mapStyle: StyleSpecification = {
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "aerodrome_label",
-      minzoom: 10,
+      minzoom: 12,
       filter: ["all", ["has", "iata"]],
       layout: {
         "icon-size": 1,
