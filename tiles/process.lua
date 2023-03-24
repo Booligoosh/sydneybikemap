@@ -215,6 +215,9 @@ end
 function way_function(way)
 	local route    = way:Find("route")
 	local highway  = way:Find("highway")
+	local proposedHighway  = way:Find("proposed:highway")
+	local plannedHighway  = way:Find("planned:highway")
+	local constructionHighway  = way:Find("construction:highway")
 	local waterway = way:Find("waterway")
 	local water    = way:Find("water")
 	local building = way:Find("building")
@@ -284,7 +287,7 @@ function way_function(way)
 	end
 
 	-- Roads ('transportation' and 'transportation_name', plus 'transportation_name_detail')
-	if highway~="" then
+	if highway~="" or proposedHighway=="cycleway" or plannedHighway=="cycleway" or constructionCycleway=="cycleway" then
 		local access = way:Find("access")
 		-- ME: Don't exclude access=private/no if the highway is under construction
 		if (access=="private" or access=="no") and highway ~= "construction" then return end
@@ -346,10 +349,10 @@ function way_function(way)
 		end
 
 		-- ME
-		if highway == "proposed" and proposed == "cycleway" then
+		if (highway == "proposed" and proposed == "cycleway") or (proposedHighway == "cycleway") or (plannedHighway == "cycleway") then
 			h = "proposedCycleway"; minzoom = 6
 		end
-		if highway == "construction" and construction == "cycleway" then
+		if (highway == "construction" and construction == "cycleway") or (construction == "cycleway") then
 			h = "constructionCycleway"; minzoom = 6
 		end
 		-- END ME
