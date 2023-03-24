@@ -309,17 +309,21 @@ function way_function(way)
 		if minorRoadValues[highway] then h = "minor"; minzoom = 12 end
 		if trackValues[highway]     then h = "track"; minzoom = 14 end
 		if pathValues[highway]      then h = "path" ; minzoom = 14 end
-		-- ME
-		if highway == "cycleway"
-			or (Set {"yes", "designated"}[bicycleAccess] and Set {"cycleway", "path", "footway", "pedestrian"}[highway])
-			then
-				if (Set {"footway", "pedestrian"}[highway]) or (Set {"yes", "designated"}[footAccess] and segregated ~= "yes") then
-					h = "sharedPath"; minzoom = 6
-				elseif highway == "cycleway" then
-					h = "separatedCycleway"; minzoom = 6
-				else
-					print("ANOMALY")
-				end
+		-- ME: sharedPath and separatedCycleway classes
+		local isMtbTrail = way:Find("mtb:scale") ~= "" or way:Find("mtb:scale:imba") ~= "" -- Exclude MTB trails - https://github.com/Booligoosh/sydneybikemap/issues/2
+		
+		if (not isMtbTrail) then
+			if highway == "cycleway"
+				or (Set {"yes", "designated"}[bicycleAccess] and Set {"cycleway", "path", "footway", "pedestrian"}[highway])
+				then
+					if (Set {"footway", "pedestrian"}[highway]) or (Set {"yes", "designated"}[footAccess] and segregated ~= "yes") then
+						h = "sharedPath"; minzoom = 6
+					elseif highway == "cycleway" then
+						h = "separatedCycleway"; minzoom = 6
+					else
+						print("ANOMALY")
+					end
+			end
 		end
 		-- END ME
 		if h=="service"             then              minzoom = 12 end
@@ -348,12 +352,14 @@ function way_function(way)
 			end
 		end
 
-		-- ME
-		if (highway == "proposed" and proposed == "cycleway") or (proposedHighway == "cycleway") or (plannedHighway == "cycleway") then
-			h = "proposedCycleway"; minzoom = 6
-		end
-		if (highway == "construction" and construction == "cycleway") or (construction == "cycleway") then
-			h = "constructionCycleway"; minzoom = 6
+		-- ME: proposedCycleway and constructionCycleway classes
+		if (not isMtbTrail) then
+			if (highway == "proposed" and proposed == "cycleway") or (proposedHighway == "cycleway") or (plannedHighway == "cycleway") then
+				h = "proposedCycleway"; minzoom = 6
+			end
+			if (highway == "construction" and construction == "cycleway") or (construction == "cycleway") then
+				h = "constructionCycleway"; minzoom = 6
+			end
 		end
 		-- END ME
 
