@@ -61,6 +61,10 @@ const mapStyle: StyleSpecification = {
       type: "vector",
       url: "https://tiles.sydneybikemap.ethan.link/metadata.json",
     },
+    // contours: {
+    //   type: "vector",
+    //   url: "http://localhost:3002/metadata.json",
+    // },
   },
   glyphs: "https://sydneybikemap.ethan.link/glyphs/{fontstack}/{range}.pbf",
   layers: [
@@ -323,20 +327,20 @@ const mapStyle: StyleSpecification = {
         },
       },
     },
-    {
-      id: "housenumber",
-      type: "symbol",
-      source: "openmaptiles",
-      "source-layer": "housenumber",
-      minzoom: 17,
-      filter: ["==", "$type", "Point"],
-      layout: {
-        "text-field": "{housenumber}",
-        "text-font": ["Noto Sans Regular"],
-        "text-size": 10,
-      },
-      paint: { "text-color": "rgba(212, 177, 146, 1)" },
-    },
+    // {
+    //   id: "housenumber",
+    //   type: "symbol",
+    //   source: "openmaptiles",
+    //   "source-layer": "housenumber",
+    //   minzoom: 17,
+    //   filter: ["==", "$type", "Point"],
+    //   layout: {
+    //     "text-field": "{housenumber}",
+    //     "text-font": ["Noto Sans Regular"],
+    //     "text-size": 10,
+    //   },
+    //   paint: { "text-color": "rgba(212, 177, 146, 1)" },
+    // },
     {
       id: "road_area_pier",
       type: "fill",
@@ -375,6 +379,54 @@ const mapStyle: StyleSpecification = {
       layout: {},
       paint: { "fill-color": "hsl(47, 26%, 88%)", "fill-opacity": 0.5 },
     },
+    // {
+    //   id: "contours",
+    //   type: "line",
+    //   source: "contours",
+    //   "source-layer": "contours",
+    //   minzoom: 12,
+    //   filter: ["all"],
+    //   layout: {
+    //     "line-cap": "round",
+    //     "line-join": "round",
+    //   },
+    //   paint: {
+    //     "line-color": "hsl(47, 80%, 28%)",
+    //     "line-opacity": {
+    //       stops: [
+    //         [14, 0.1],
+    //         [16, 0.175],
+    //         [18, 0.25],
+    //       ],
+    //     },
+    //     "line-width": 1,
+    //   },
+    // },
+    // {
+    //   id: "contour_labels",
+    //   type: "symbol",
+    //   source: "contours",
+    //   "source-layer": "contours",
+    //   minzoom: 15.5,
+    //   filter: ["all"],
+    //   layout: {
+    //     "text-field": "{ele}",
+    //     "text-font": ["Noto Sans Regular"],
+    //     "text-size": {
+    //       stops: [
+    //         [16, 8],
+    //         [18, 10],
+    //       ],
+    //     },
+    //     "symbol-placement": "line",
+    //     "text-letter-spacing": 0.1,
+    //     "text-rotation-alignment": "viewport",
+    //     visibility: "visible",
+    //   },
+    //   paint: {
+    //     "text-color": "hsl(47, 20%, 50%)",
+    //   },
+    // },
     {
       id: "road_path",
       type: "line",
