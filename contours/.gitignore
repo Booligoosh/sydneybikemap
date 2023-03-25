@@ -1,0 +1,10 @@
+# Geoscience Australia extracts
+5m_DEM.tif
+5m_DEM_*.zip
+
+# Intermediate files
+contours.geojson
+contours.mbtiles
+
+# Final file
+contours.pmtiles
