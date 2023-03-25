@@ -58,7 +58,7 @@ This project is far from done, there's lots of things I want to add!
 - [ ] Toilets (for when you're out on a ride)
 - [ ] Public bike pumps
 - [ ] StreetView embeds
-- [ ] Elevation contour lines
+- [x] Elevation contour lines
 
 Feel free to [contact me][contact] if you have any other ideas/requests (some may be more feasible than others).
 
