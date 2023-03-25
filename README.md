@@ -60,6 +60,7 @@ This project is far from done, there's lots of things I want to add!
 - [ ] StreetView embeds
 - [x] Elevation contour lines
 - [ ] Stairs
+- [ ] Render pedestrian streets/areas
 
 Feel free to [contact me][contact] if you have any other ideas/requests (some may be more feasible than others).
 
