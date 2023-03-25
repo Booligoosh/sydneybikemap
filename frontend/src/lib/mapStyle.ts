@@ -44,6 +44,23 @@ const PUBLIC_TRANSPORT_STOP_STYLE_PAINT = {
   },
 };
 
+const CONTOURS_STYLE_LAYOUT = {
+  "line-cap": "round",
+  "line-join": "round",
+};
+
+const CONTOURS_STYLE_PAINT = {
+  "line-color": "hsl(47, 80%, 28%)",
+  "line-opacity": {
+    stops: [
+      [14, 0.1],
+      [16, 0.175],
+      [18, 0.25],
+    ],
+  },
+  "line-width": 1,
+};
+
 // Map style
 const mapStyle: StyleSpecification = {
   version: 8,
@@ -61,12 +78,12 @@ const mapStyle: StyleSpecification = {
       type: "vector",
       url: "https://tiles.sydneybikemap.ethan.link/metadata.json",
     },
-    // contours: {
-    //   type: "vector",
-    //   url: "http://localhost:3002/metadata.json",
-    // },
+    contours: {
+      type: "vector",
+      url: "pmtiles://https://pmtiles.sydneybikemap.ethan.link/contours.pmtiles",
+    },
   },
-  glyphs: "https://sydneybikemap.ethan.link/glyphs/{fontstack}/{range}.pbf",
+  glyphs: "/glyphs/{fontstack}/{range}.pbf",
   layers: [
     {
       id: "background",
@@ -110,20 +127,6 @@ const mapStyle: StyleSpecification = {
           ],
         },
       },
-    },
-    {
-      id: "water",
-      type: "fill",
-      source: "openmaptiles",
-      "source-layer": "water",
-      filter: [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["!=", "intermittent", 1],
-        ["!=", "brunnel", "tunnel"],
-      ],
-      layout: { visibility: "visible" },
-      paint: { "fill-color": WATER_COLOR },
     },
     {
       id: "water_intermittent",
@@ -342,6 +345,41 @@ const mapStyle: StyleSpecification = {
     //   paint: { "text-color": "rgba(212, 177, 146, 1)" },
     // },
     {
+      id: "contours_5m",
+      type: "line",
+      source: "contours",
+      "source-layer": "contours",
+      minzoom: 14,
+      filter: ["all", ["!=", ["%", ["get", "ele"], 10], 0]],
+      layout: { ...CONTOURS_STYLE_LAYOUT },
+      paint: { ...CONTOURS_STYLE_PAINT },
+    },
+    {
+      id: "contours_10m",
+      type: "line",
+      source: "contours",
+      "source-layer": "contours",
+      minzoom: 12,
+      filter: ["all", ["==", ["%", ["get", "ele"], 10], 0]],
+      layout: { ...CONTOURS_STYLE_LAYOUT },
+      paint: { ...CONTOURS_STYLE_PAINT },
+    },
+    // Water must be above contours to prevent all the weird harbour/ocean contours showing
+    {
+      id: "water",
+      type: "fill",
+      source: "openmaptiles",
+      "source-layer": "water",
+      filter: [
+        "all",
+        ["==", "$type", "Polygon"],
+        ["!=", "intermittent", 1],
+        ["!=", "brunnel", "tunnel"],
+      ],
+      layout: { visibility: "visible" },
+      paint: { "fill-color": WATER_COLOR },
+    },
+    {
       id: "road_area_pier",
       type: "fill",
       metadata: {},
@@ -379,54 +417,6 @@ const mapStyle: StyleSpecification = {
       layout: {},
       paint: { "fill-color": "hsl(47, 26%, 88%)", "fill-opacity": 0.5 },
     },
-    // {
-    //   id: "contours",
-    //   type: "line",
-    //   source: "contours",
-    //   "source-layer": "contours",
-    //   minzoom: 12,
-    //   filter: ["all"],
-    //   layout: {
-    //     "line-cap": "round",
-    //     "line-join": "round",
-    //   },
-    //   paint: {
-    //     "line-color": "hsl(47, 80%, 28%)",
-    //     "line-opacity": {
-    //       stops: [
-    //         [14, 0.1],
-    //         [16, 0.175],
-    //         [18, 0.25],
-    //       ],
-    //     },
-    //     "line-width": 1,
-    //   },
-    // },
-    // {
-    //   id: "contour_labels",
-    //   type: "symbol",
-    //   source: "contours",
-    //   "source-layer": "contours",
-    //   minzoom: 15.5,
-    //   filter: ["all"],
-    //   layout: {
-    //     "text-field": "{ele}",
-    //     "text-font": ["Noto Sans Regular"],
-    //     "text-size": {
-    //       stops: [
-    //         [16, 8],
-    //         [18, 10],
-    //       ],
-    //     },
-    //     "symbol-placement": "line",
-    //     "text-letter-spacing": 0.1,
-    //     "text-rotation-alignment": "viewport",
-    //     visibility: "visible",
-    //   },
-    //   paint: {
-    //     "text-color": "hsl(47, 20%, 50%)",
-    //   },
-    // },
     {
       id: "road_path",
       type: "line",
@@ -1021,6 +1011,31 @@ const mapStyle: StyleSpecification = {
             [22, 15],
           ],
         },
+      },
+    },
+    {
+      id: "contour_labels",
+      type: "symbol",
+      source: "contours",
+      "source-layer": "contours",
+      minzoom: 15.5,
+      filter: ["all"],
+      layout: {
+        "text-field": "{ele}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": {
+          stops: [
+            [16, 8],
+            [18, 10],
+          ],
+        },
+        "symbol-placement": "line",
+        "text-letter-spacing": 0.05,
+        "text-rotation-alignment": "map",
+        visibility: "visible",
+      },
+      paint: {
+        "text-color": "hsl(47, 20%, 50%)",
       },
     },
     {

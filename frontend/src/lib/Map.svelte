@@ -1,24 +1,21 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import {
-    Map,
-    GeolocateControl,
-    NavigationControl,
-    ScaleControl,
-  } from "maplibre-gl";
+  import maplibre from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
   import mapStyle from "./mapStyle";
   import trainIcon from "../assets/map-icons/train.png";
   import metroIcon from "../assets/map-icons/metro.png";
   import lightRailIcon from "../assets/map-icons/lightrail.png";
+  import * as pmtiles from "pmtiles";
+  // Add pmtiles protocol handling
+  const protocol = new pmtiles.Protocol();
+  maplibre.addProtocol("pmtiles", protocol.tile);
 
   let map;
   let mapContainer;
 
   onMount(() => {
-    const initialState = { lng: 139.753, lat: 35.6844, zoom: 14 };
-
-    map = new Map({
+    map = new maplibre.Map({
       container: mapContainer,
       style: mapStyle,
       center: [151.0409, -33.8455], // starting position [lng, lat]
@@ -46,10 +43,10 @@
     });
 
     // Add controls
-    map.addControl(new NavigationControl({}));
-    map.addControl(new ScaleControl({}));
+    map.addControl(new maplibre.NavigationControl({}));
+    map.addControl(new maplibre.ScaleControl({}));
     map.addControl(
-      new GeolocateControl({
+      new maplibre.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
         },
