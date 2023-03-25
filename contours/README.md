@@ -61,3 +61,13 @@ pmtiles convert contours.mbtiles contours.pmtiles
 Upload `contours.pmtiles` into the root of the Cloudflare R2 bucket via the Cloudflare website. The file is around 95MB, so it's under the 300MB limit for files uploaded from the web UI.
 
 The pmtiles file format allows retrieval of individual tiles using HTTP Range Requests, meaning it's fine to have it sitting in static object storage — the frontend calculates which part of the file to retrieve. For more info, see [protomaps.com](https://protomaps.com/).
+
+## 6. Cleanup
+
+To save space on your computer, you might want to delete the intermediate files.
+
+```bash
+rm 5m_DEM.tif contours.geojson contours.mbtiles
+```
+
+This will leave the final output (`contours.pmtiles`) and the source zip file. You can delete the source zip too if you want as it's quite large, but this will mean you'll need to request a download from Elvis all over again if you want to re-run this process in future.
