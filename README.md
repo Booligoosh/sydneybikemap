@@ -1,4 +1,4 @@
-# SydneyBikeMap (WIP)
+# SydneyBikeMap
 
 https://sydneybikemap.ethan.link/
 
