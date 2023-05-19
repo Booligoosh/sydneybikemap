@@ -771,6 +771,32 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
+      id: "road_under_30kmh",
+      type: "line",
+      source: "openmaptiles",
+      "source-layer": "transportation",
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "minor"],
+        // WIP not many 20kmh roads, so using 50kmh as debug
+        // Currenly doesn't render any roads with this line uncommented
+        // I assume the maxspeed attribute isn't added correctly in the process lua config
+        // ["<=", "maxspeed", 50],
+      ],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": "orange",
+        "line-width": {
+          base: 1.4,
+          stops: [
+            [6, 0.8],
+            [20, 32],
+          ],
+        },
+      },
+    },
+    {
       id: "road_separated_cycleway",
       type: "line",
       source: "openmaptiles",

@@ -247,6 +247,7 @@ function way_function(way)
 	if aerowayBuildings[aeroway] then building="yes"; aeroway="" end
 	if landuse == "field" then landuse = "farmland" end
 	if landuse == "meadow" and way:Find("meadow")=="agricultural" then landuse="farmland" end
+	SetMaxspeedAtttributes(way) -- ME
 
 	-- Boundaries within relations
 	local admin_level = 11
@@ -634,6 +635,23 @@ function SetNameAttributes(obj)
 		if iname~=main_written then obj:Attribute("name:"..lang, iname) end
 	end
 end
+
+-- ME
+-- Set maxspeed
+function SetMaxspeedAtttributes(obj)
+  -- local maxspeed = obj:Find("maxspeed")
+	-- if maxspeed ~= "" then
+	-- 	obj:AttributeNumeric("maxspeed", tonumber(maxspeed) or 0)
+  --   end
+
+	local maxspeed = obj:Find("maxspeed")
+  local num_maxspeed = tonumber(maxspeed) or 0
+	if maxspeed ~= "" and maxspeed ~= 0 then
+		print("maxspeed: " .. tostring(maxspeed) .. " num_maxspeed: " .. tostring(num_maxspeed) )
+	end
+  obj:AttributeNumeric("maxspeed", num_maxspeed)
+end
+-- ENDME
 
 -- Set ele and ele_ft on any object
 function SetEleAttributes(obj)
