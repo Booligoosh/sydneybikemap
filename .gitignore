@@ -5,3 +5,6 @@ node_modules
 .env
 osmconvert64
 coastline
+
+# VSCode & Git will struggle without tiles ignored :)
+tiles/output/
