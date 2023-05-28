@@ -135,7 +135,7 @@ end
 majorRoadValues = Set { "motorway", "trunk", "primary" }
 mainRoadValues  = Set { "secondary", "motorway_link", "trunk_link", "primary_link", "secondary_link" }
 midRoadValues   = Set { "tertiary", "tertiary_link" }
-minorRoadValues = Set { "unclassified", "residential", "road", "living_street" }
+minorRoadValues = Set { "unclassified", "residential", "road", "living_street", "service" }
 trackValues     = Set { "cycleway", "byway", "bridleway", "track" }
 pathValues      = Set { "footway", "path", "steps", "pedestrian" }
 linkValues      = Set { "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link" }
@@ -337,7 +337,6 @@ function way_function(way)
 			end
 		end
 		-- END ME
-		if h=="service"             then              minzoom = 12 end
 
 		-- Links (ramp)
 		local ramp=false
@@ -384,7 +383,7 @@ function way_function(way)
 			if ramp then way:AttributeNumeric("ramp",1) end
 
 			-- Service
-			if highway == "service" and service ~="" then way:Attribute("service", service) end
+			if service and service ~="" then way:Attribute("service", service) end
 
 			local oneway = way:Find("oneway")
 			if oneway == "yes" or oneway == "1" then
@@ -401,7 +400,7 @@ function way_function(way)
 			if highway == "motorway" or highway == "trunk" then
 				way:Layer("transportation_name", false)
 				way:MinZoom(minzoom)
-			elseif h == "minor" or h == "track" or h == "path" or h == "service" then
+			elseif h == "minor" or h == "track" or h == "path" then
 				way:Layer("transportation_name_detail", false)
 				way:MinZoom(minzoom)
 			else

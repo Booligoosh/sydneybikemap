@@ -446,11 +446,7 @@ const mapStyle: StyleSpecification = {
       source: "openmaptiles",
       "source-layer": "transportation",
       minzoom: 13,
-      filter: [
-        "all",
-        ["==", "$type", "LineString"],
-        ["in", "class", "minor", "service"],
-      ],
+      filter: ["all", ["==", "$type", "LineString"], ["in", "class", "minor"]],
       layout: { "line-cap": "round", "line-join": "round" },
       paint: {
         "line-color": "hsl(0, 0%, 97%)",
