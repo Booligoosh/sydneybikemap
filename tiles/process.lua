@@ -314,8 +314,15 @@ function way_function(way)
 		if pathValues[highway]      then h = "path" ; minzoom = 14 end
 		-- ME: safeSpeed class
 		local maxspeed = tonumber(way:Find("maxspeed"))
-		print(maxspeed);
-		if maxspeed and maxspeed <= MAX_SAFE_SPEED then
+		if maxspeed
+			and maxspeed <= MAX_SAFE_SPEED
+			and ( -- check it's actually a road as we don't want to render footpaths, pedestrian ways/areas etc as safe speed streets
+				majorRoadValues[highway]
+				or mainRoadValues[highway]
+				or midRoadValues[highway]
+				or minorRoadValues[highway]
+			)
+		then
 			h = "safeSpeed"; minzoom = 6
 			-- way:AttributeNumeric("maxspeed", maxspeed)
 			-- ^ for some reason this doesn't work if it's called this early so commenting out
