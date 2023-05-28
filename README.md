@@ -49,7 +49,7 @@ This project is far from done, there's lots of things I want to add!
 - [x] Shared paths
 - [x] Cycleways under construction
 - [x] Planned/proposed cycleways
-- [ ] &le;20km/h streets (cause these are nearly as relaxed as cycleways)
+- [x] &le;30km/h streets, showing speed limits (cause some of these are as relaxed as cycleways)
 - [ ] Better handling/displaying on one-way streets and contraflows
 - [x] Make train lines & stations more prominent (to plan bike+train journeys)
 - [x] Better styling for motorway tunnels
