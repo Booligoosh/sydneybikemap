@@ -12,7 +12,7 @@
     // expanded or collapsed.
     //
     // This will always get set *after* the initial render (due to being in onMount).
-    localStorage.setItem("lastVisitedVersion", "1");
+    localStorage.setItem("lastVisitedVersion", "2");
   });
 </script>
 

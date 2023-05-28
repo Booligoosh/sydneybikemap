@@ -3,8 +3,8 @@
   import Logo from "./Logo.svelte";
   import { ChevronDownIcon } from "@rgossiaux/svelte-heroicons/solid";
 
-  // Only start expanded if they've never visited the site before
-  let expanded = localStorage.getItem("lastVisitedVersion") ? false : true;
+  // Only start expanded if they've never visited the site before (or not since the latest update)
+  let expanded = localStorage.getItem("lastVisitedVersion") !== "2";
 </script>
 
 <div
