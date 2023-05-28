@@ -23,6 +23,11 @@
       on:infoclick={() => (infoModalType = "sharedPath")}
     />
     <LegendItem
+      text="Safe speed street (≤30km/h limit)"
+      color="hsl(31, 29%, 58%)"
+      lineStyle="solid"
+    />
+    <LegendItem
       text="Cycleway under construction"
       color="hsl(6, 93%, 71%)"
       lineStyle="dashed"

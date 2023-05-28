@@ -43,6 +43,9 @@ ZRES13 = 19.1
 -- The height of one floor, in meters
 BUILDING_FLOOR_HEIGHT = 3.66
 
+-- ME: The max speed limit in km/h considered to be a safe speed street
+MAX_SAFE_SPEED = 30
+
 -- Process node/way tags
 aerodromeValues = Set { "international", "public", "regional", "military", "private" }
 
@@ -309,6 +312,14 @@ function way_function(way)
 		if minorRoadValues[highway] then h = "minor"; minzoom = 12 end
 		if trackValues[highway]     then h = "track"; minzoom = 14 end
 		if pathValues[highway]      then h = "path" ; minzoom = 14 end
+		-- ME: safeSpeed class
+		local maxspeed = tonumber(way:Find("maxspeed"))
+		print(maxspeed);
+		if maxspeed and maxspeed <= MAX_SAFE_SPEED then
+			h = "safeSpeed"; minzoom = 6
+			-- way:AttributeNumeric("maxspeed", maxspeed)
+			-- ^ for some reason this doesn't work if it's called this early so commenting out
+		end
 		-- ME: sharedPath and separatedCycleway classes
 		local isMtbTrail = way:Find("mtb:scale") ~= "" or way:Find("mtb:scale:imba") ~= "" -- Exclude MTB trails - https://github.com/Booligoosh/sydneybikemap/issues/2
 		
@@ -398,6 +409,9 @@ function way_function(way)
 				way:MinZoom(minzoom)
 			end
 			SetNameAttributes(way)
+			-- ME
+			if maxspeed then way:AttributeNumeric("maxspeed", maxspeed) end
+			-- END ME
 			way:Attribute("class",h)
 			way:Attribute("network","road") -- **** could also be us-interstate, us-highway, us-state
 			if h~=highway then way:Attribute("subclass",highway) end

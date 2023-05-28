@@ -6,6 +6,7 @@
   import trainIcon from "../assets/map-icons/train.png";
   import metroIcon from "../assets/map-icons/metro.png";
   import lightRailIcon from "../assets/map-icons/lightrail.png";
+  import speedLimitIcon from "../assets/map-icons/speedlimit.png";
   import * as pmtiles from "pmtiles";
   // Add pmtiles protocol handling
   const protocol = new pmtiles.Protocol();
@@ -40,6 +41,10 @@
     map.loadImage(lightRailIcon, (error, image) => {
       if (error) throw error;
       map.addImage("light_rail_icon", image, { sdf: false });
+    });
+    map.loadImage(speedLimitIcon, (error, image) => {
+      if (error) throw error;
+      map.addImage("speed_limit_icon", image, { sdf: false });
     });
 
     // Add controls

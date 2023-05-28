@@ -749,6 +749,29 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
+      id: "road_safe_speed",
+      type: "line",
+      source: "openmaptiles",
+      "source-layer": "transportation",
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "safeSpeed"],
+      ],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": "hsl(31, 29%, 58%)",
+        // "line-dasharray": [0, 2],
+        "line-width": {
+          base: 1.55,
+          stops: [
+            [4, 0.25],
+            [20, 30],
+          ],
+        },
+      },
+    },
+    {
       id: "road_shared_path",
       type: "line",
       source: "openmaptiles",
@@ -1252,6 +1275,46 @@ const mapStyle: StyleSpecification = {
       },
       paint: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
+      },
+    },
+    {
+      id: "speed_limit_sign",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "transportation_name",
+      minzoom: 15,
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "safeSpeed"],
+      ],
+      layout: {
+        "text-anchor": "center",
+        "text-field": "{maxspeed}",
+        "text-font": ["Noto Sans Bold"],
+        "text-offset": [0, 0],
+        visibility: "visible",
+        "icon-size": {
+          base: 1.55,
+          stops: [
+            [14, 0.035],
+            [20, 0.07],
+          ],
+        },
+        "text-size": {
+          stops: [
+            [14, 6],
+            [20, 12], // size 10 at zoom 15
+          ],
+        },
+        // "symbol-placement": "line-center",
+        // "icon-overlap": "always",
+        "icon-image": "speed_limit_icon",
+        "text-rotation-alignment": "map",
+        "icon-rotation-alignment": "map",
+      },
+      paint: {
+        "text-color": "#231f20", // Taken using eyedropper from https://www.nsw.gov.au/driving-boating-and-transport/roads-safety-and-rules/safe-driving/speed-limits-and-cameras/speed-limits
       },
     },
     {
