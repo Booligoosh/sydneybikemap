@@ -4,14 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "dev": "node generateSprites.js && vite",
+    "build": "node generateSprites.js && vite build",
+    "preview": "node generateSprites.js && vite preview",
+    "check": "node generateSprites.js && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "@tsconfig/svelte": "^3.0.0",
+    "@unvt/sprite-one": "^0.0.9",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "svelte": "^3.55.1",

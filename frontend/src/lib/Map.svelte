@@ -3,10 +3,6 @@
   import maplibre from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
   import mapStyle from "./mapStyle";
-  import trainIcon from "../assets/map-icons/train.png";
-  import metroIcon from "../assets/map-icons/metro.png";
-  import lightRailIcon from "../assets/map-icons/lightrail.png";
-  import speedLimitIcon from "../assets/map-icons/speedlimit.png";
   import * as pmtiles from "pmtiles";
   // Add pmtiles protocol handling
   const protocol = new pmtiles.Protocol();
@@ -26,25 +22,6 @@
       // customAttribution:
       //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
       hash: "map",
-    });
-
-    // Load images
-    // TODO: Make a sprite sheet instead
-    map.loadImage(trainIcon, (error, image) => {
-      if (error) throw error;
-      map.addImage("train_icon", image, { sdf: false });
-    });
-    map.loadImage(metroIcon, (error, image) => {
-      if (error) throw error;
-      map.addImage("metro_icon", image, { sdf: false });
-    });
-    map.loadImage(lightRailIcon, (error, image) => {
-      if (error) throw error;
-      map.addImage("light_rail_icon", image, { sdf: false });
-    });
-    map.loadImage(speedLimitIcon, (error, image) => {
-      if (error) throw error;
-      map.addImage("speed_limit_icon", image, { sdf: false });
     });
 
     // Add controls

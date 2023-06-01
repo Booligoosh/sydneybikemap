@@ -1,1 +1,0 @@
-- Public transport icons from https://opendata.transport.nsw.gov.au/dataset/transport-mode-symbols-and-pictograms

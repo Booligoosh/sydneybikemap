@@ -84,6 +84,7 @@ const mapStyle: StyleSpecification = {
     },
   },
   glyphs: "/glyphs/{fontstack}/{range}.pbf",
+  sprite: window.location.origin + "/map-icons/spritesheets/sheet",
   layers: [
     {
       id: "background",
@@ -1223,7 +1224,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
-        "icon-image": "train_icon",
+        "icon-image": "train",
       },
       paint: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
@@ -1244,7 +1245,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
-        "icon-image": "metro_icon",
+        "icon-image": "metro",
       },
       paint: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
@@ -1267,7 +1268,7 @@ const mapStyle: StyleSpecification = {
         ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
         // Only show names at zoom 13 and below
         "text-field": ["step", ["zoom"], "", 13, ["get", "name:latin"]],
-        "icon-image": "light_rail_icon",
+        "icon-image": "light_rail",
       },
       paint: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
@@ -1305,7 +1306,7 @@ const mapStyle: StyleSpecification = {
         },
         // "symbol-placement": "line-center",
         // "icon-overlap": "always",
-        "icon-image": "speed_limit_icon",
+        "icon-image": "speed_limit",
         "text-rotation-alignment": "map",
         "icon-rotation-alignment": "map",
       },

@@ -1,0 +1,2 @@
+- Public transport icons from https://opendata.transport.nsw.gov.au/dataset/transport-mode-symbols-and-pictograms
+  - Converted from PNG to PNG embedded in SVG using Inkscape
