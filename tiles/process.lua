@@ -324,8 +324,6 @@ function way_function(way)
 			)
 		then
 			h = "safeSpeed"; minzoom = 6
-			-- way:AttributeNumeric("maxspeed", maxspeed)
-			-- ^ for some reason this doesn't work if it's called this early so commenting out
 		end
 		-- ME: sharedPath and separatedCycleway classes
 		local isMtbTrail = way:Find("mtb:scale") ~= "" or way:Find("mtb:scale:imba") ~= "" -- Exclude MTB trails - https://github.com/Booligoosh/sydneybikemap/issues/2
@@ -389,6 +387,10 @@ function way_function(way)
 			SetBrunnelAttributes(way)
 			if ramp then way:AttributeNumeric("ramp",1) end
 
+			-- ME
+			if maxspeed then way:AttributeNumeric("maxspeed", maxspeed) end
+			-- END ME
+
 			-- Service
 			if service and service ~="" then way:Attribute("service", service) end
 
@@ -417,9 +419,6 @@ function way_function(way)
 				way:MinZoom(minzoom)
 			end
 			SetNameAttributes(way)
-			-- ME
-			if maxspeed then way:AttributeNumeric("maxspeed", maxspeed) end
-			-- END ME
 			way:Attribute("class",h)
 			way:Attribute("network","road") -- **** could also be us-interstate, us-highway, us-state
 			if h~=highway then way:Attribute("subclass",highway) end

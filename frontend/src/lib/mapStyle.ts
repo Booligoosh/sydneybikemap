@@ -1332,7 +1332,7 @@ const mapStyle: StyleSpecification = {
       id: "speed_limit_sign",
       type: "symbol",
       source: "openmaptiles",
-      "source-layer": "transportation_name",
+      "source-layer": "transportation",
       minzoom: 15,
       filter: [
         "all",
