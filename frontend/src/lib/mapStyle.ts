@@ -9,6 +9,14 @@ const WATER_COLOR = "hsl(205, 61%, 83%)";
 
 const SUBURB_NAMES_MAX_ZOOM = 15;
 
+const CYCLE_INFRA_CLASSES = [
+  "separatedCycleway",
+  "sharedPath",
+  "safeSpeed",
+  "constructionCycleway",
+  "proposedCycleway",
+];
+
 const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
   "text-anchor": "top",
   // Only show names at zoom 12 and below
@@ -59,6 +67,19 @@ const CONTOURS_STYLE_PAINT = {
     ],
   },
   "line-width": 1,
+};
+
+const ONEWAY_STYLE_LAYOUT = {
+  visibility: "visible",
+  "symbol-placement": "line",
+  "icon-image": "one_way",
+  "icon-size": {
+    base: 1.4,
+    stops: [
+      [15, 0.4],
+      [20, 1],
+    ],
+  },
 };
 
 // Map style
@@ -700,6 +721,26 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
+      id: "oneway_icons",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "transportation",
+      minzoom: 15,
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["==", "oneway", 1],
+        ["!in", "class", ...CYCLE_INFRA_CLASSES],
+      ],
+      layout: ONEWAY_STYLE_LAYOUT,
+      paint: {
+        "icon-opacity": 0.5,
+        // Below doesn't work as it's not an SDF icon, so we have to make a halo inside the icon file
+        // "icon-halo-color": "hsl(0, 0%, 100%)",
+        // "icon-halo-width": 2,
+      },
+    },
+    {
       id: "road_proposed_cycleway",
       type: "line",
       source: "openmaptiles",
@@ -811,6 +852,19 @@ const mapStyle: StyleSpecification = {
           ],
         },
       },
+    },
+    {
+      id: "oneway_cycle_infra_icons",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "transportation",
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["==", "oneway", 1],
+        ["in", "class", ...CYCLE_INFRA_CLASSES],
+      ],
+      layout: ONEWAY_STYLE_LAYOUT,
     },
     {
       id: "waterway-bridge-case",
@@ -1107,7 +1161,7 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
-      id: "road_major_label",
+      id: "road_label",
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "transportation_name",

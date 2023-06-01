@@ -393,7 +393,9 @@ function way_function(way)
 			if service and service ~="" then way:Attribute("service", service) end
 
 			local oneway = way:Find("oneway")
-			if oneway == "yes" or oneway == "1" then
+			local onewayBicycle = way:Find("oneway:bicycle")
+			-- Todo: Actually show information about contraflows, rather than just hiding the one way symbol
+			if (oneway == "yes" or oneway == "1") and onewayBicycle ~= "no" and onewayBicycle ~= "0" then
 				way:AttributeNumeric("oneway",1)
 			end
 			if oneway == "-1" then

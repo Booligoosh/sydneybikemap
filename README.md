@@ -50,7 +50,8 @@ This project is far from done, there's lots of things I want to add!
 - [x] Cycleways under construction
 - [x] Planned/proposed cycleways
 - [x] &le;30km/h streets, showing speed limits (cause some of these are as relaxed as cycleways)
-- [ ] Better handling/displaying on one-way streets and contraflows
+- [x] Display one-way streets
+- [ ] Display contraflows (currently just hides one-way symbol if bikes are allowed both ways, but doesn't show the street as special)
 - [x] Make train lines & stations more prominent (to plan bike+train journeys)
 - [x] Better styling for motorway tunnels
 - [ ] Bike parking
