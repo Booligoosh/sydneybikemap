@@ -291,15 +291,21 @@ function way_function(way)
 
 	-- Roads ('transportation' and 'transportation_name', plus 'transportation_name_detail')
 	if highway~="" or proposedHighway=="cycleway" or plannedHighway=="cycleway" or constructionCycleway=="cycleway" then
-		local access = way:Find("access")
-		-- ME: Don't exclude access=private/no if the highway is under construction
-		if (access=="private" or access=="no") and highway ~= "construction" then return end
-
 		-- ME
 		local bicycleAccess = way:Find("bicycle")
 		local footAccess = way:Find("foot")
 		local segregated = way:Find("segregated")
 		-- END ME
+
+		local access = way:Find("access")
+		if (access=="private" or access=="no")
+			-- ME: Don't exclude access=private/no if the highway is accessible by bicycles (i.e. has a bicycle access tag that isn't private/no)
+			and (bicycleAccess == nil or bicycleAccess == "" or bicycleAccess == "private" or bicycleAccess == "no")
+			-- ME: Don't exclude access=private/no if the highway is under construction or proposed
+			and highway ~= "construction" and highway ~= "proposed"
+		then
+			return
+		end
 
 		local h = highway
 		local minzoom = 99
