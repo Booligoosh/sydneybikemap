@@ -97,7 +97,7 @@ const mapStyle: StyleSpecification = {
   sources: {
     openmaptiles: {
       type: "vector",
-      url: "https://tiles.sydneybikemap.ethan.link/metadata.json",
+      url: "http://localhost:8000/metadata.json",
     },
     contours: {
       type: "vector",
@@ -443,21 +443,46 @@ const mapStyle: StyleSpecification = {
       id: "road_path",
       type: "line",
       source: "openmaptiles",
-      "source-layer": "transportation",
+      "source-layer": "transportation_name", // Todo: Work out why it isn't working with "transportation" and move it to that
       filter: [
         "all",
         ["==", "$type", "LineString"],
         ["in", "class", "path", "track"],
+        ["!=", "subclass", "steps"],
       ],
       layout: { "line-cap": "square", "line-join": "bevel" },
       paint: {
         "line-color": "hsl(0, 0%, 97%)",
-        "line-dasharray": [1, 1],
+        "line-dasharray": [3, 1],
         "line-width": {
           base: 1.55,
           stops: [
             [4, 0.25],
             [20, 10],
+          ],
+        },
+      },
+    },
+    {
+      id: "road_steps",
+      type: "line",
+      source: "openmaptiles",
+      "source-layer": "transportation_name", // Todo: Work out why it isn't working with "transportation" and move it to that
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "path", "track"],
+        ["==", "subclass", "steps"],
+      ],
+      layout: { "line-cap": "square", "line-join": "bevel" },
+      paint: {
+        "line-color": "hsl(0, 0%, 97%)",
+        "line-dasharray": [0.35, 0.35],
+        "line-width": {
+          base: 1.55,
+          stops: [
+            [4, 0.5],
+            [20, 20],
           ],
         },
       },

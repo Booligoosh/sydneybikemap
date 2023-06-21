@@ -390,6 +390,7 @@ function way_function(way)
 			way:MinZoom(minzoom)
 			SetZOrder(way)
 			way:Attribute("class", h)
+			if h~=highway then way:Attribute("subclass",highway) end
 			SetBrunnelAttributes(way)
 			if ramp then way:AttributeNumeric("ramp",1) end
 
