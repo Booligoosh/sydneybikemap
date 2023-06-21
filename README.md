@@ -54,7 +54,7 @@ This project is far from done, there's lots of things I want to add!
 - [ ] Display contraflows (currently just hides one-way symbol if bikes are allowed both ways, but doesn't show the street as special)
 - [x] Make train lines & stations more prominent (to plan bike+train journeys)
 - [x] Better styling for motorway tunnels
-- [ ] Bike parking
+- [x] Bike parking
 - [ ] Drinking water (for when you're out on a ride)
 - [ ] Toilets (for when you're out on a ride)
 - [ ] Public bike pumps

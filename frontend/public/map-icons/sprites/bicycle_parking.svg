@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 6.3499999 6.35"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:#2c97d6;fill-opacity:1;stroke:none;stroke-width:1.05833;stroke-linejoin:round;stroke-miterlimit:2;paint-order:stroke markers fill;stop-color:#000000"
+       id="rect234"
+       width="6.3499999"
+       height="6.3499999"
+       x="0"
+       y="0"
+       rx="0.90744746"
+       ry="0.90744746" />
+    <g
+       aria-label="P"
+       id="text2090"
+       style="font-size:5.18315px;line-height:1.25;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.129579">
+      <path
+         d="M 1.7706158,5.0597816 H 2.6817163 V 3.8891554 h 0.618444 c 0.8632448,0 1.4025427,-0.5116888 1.4025427,-1.2939469 0,-0.7748956 -0.5282542,-1.3049905 -1.3749336,-1.3049905 H 1.7706158 Z M 2.6817163,3.1713186 V 2.0246203 h 0.4491082 c 0.4086148,0 0.627647,0.2208729 0.627647,0.5705882 0,0.3478748 -0.2190322,0.5761101 -0.627647,0.5761101 z"
+         style="font-weight:800;font-family:Inter;-inkscape-font-specification:'Inter Ultra-Bold'"
+         id="path3051" />
+    </g>
+  </g>
+</svg>

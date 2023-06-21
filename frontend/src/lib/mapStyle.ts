@@ -1263,6 +1263,25 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
+      id: "bicycle_parking",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "poi",
+      minzoom: 15.5,
+      filter: [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "class", "amenity"],
+        ["==", "subclass", "bicycle_parking"],
+      ],
+      layout: {
+        "icon-size": 0.5,
+        "icon-rotate": 0,
+        "icon-image": "bicycle_parking",
+      },
+      paint: {},
+    },
+    {
       id: "train_station",
       type: "symbol",
       source: "openmaptiles",
