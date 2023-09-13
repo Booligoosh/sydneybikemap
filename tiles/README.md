@@ -51,7 +51,17 @@ index af63dcf..d749e69 100644
 
 ## Installing `pmtiles`
 
+### Ubuntu
+
 See https://github.com/protomaps/go-pmtiles#installation
+
+### macOS
+
+Install [Homebrew](https://brew.sh/)
+
+```
+brew install pmtiles
+```
 
 # Processing
 
