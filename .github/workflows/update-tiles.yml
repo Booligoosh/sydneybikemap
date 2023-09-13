@@ -11,8 +11,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch-data:
+  update-tiles:
     runs-on: ubuntu-latest
+    container: ghcr.io/systemed/tilemaker:master
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -26,12 +27,6 @@ jobs:
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
         run: unzip -j -d coastline water-polygons-split-4326.zip
-  generate-tiles:
-    runs-on: ubuntu-latest
-    container: ghcr.io/systemed/tilemaker:master
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Generate tiles
         run: tilemaker --input ./tiles/data.osm.pbf --output ./tiles/output --config ./tiles/config.json --process ./tiles/process.lua
       - name: Remove duplicate files
