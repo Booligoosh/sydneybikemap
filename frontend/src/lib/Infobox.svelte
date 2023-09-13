@@ -8,7 +8,9 @@
 </script>
 
 <div
-  class="sm:fixed inset-5 z-10 sm:rounded-lg bg-white w-full sm:w-auto sm:max-w-sm sm:shadow-md border-gray-500 h-fit mx-auto lg:mx-0"
+  class={`sm:fixed inset-5 z-10 sm:rounded-lg bg-white w-full sm:w-auto sm:max-w-sm border-b sm:border border-gray-${
+    expanded ? "500" : "300"
+  } h-fit overflow-hidden mx-auto lg:mx-0`}
 >
   <section>
     <button
@@ -37,36 +39,46 @@
     class="sm:transition-[max-height] overflow-hidden"
     style:max-height={expanded ? "100vh" : 0}
   >
-    <div class="flex flex-col gap-3 p-3 pt-0">
-      <section><p>Your guide to Sydney&rsquo;s cycle network 🚲️</p></section>
+    <div
+      class={`flex flex-col gap-3 p-3 border-t border-gray-${
+        expanded ? "500" : "300"
+      }`}
+    >
+      <!-- <section><p>Your guide to Sydney&rsquo;s cycle network 🚲️</p></section> -->
+      <!-- <section>
+        <input
+          placeholder="Search&hellip;"
+          class="rounded-md border border-gray-400 py-2 px-3 w-full text-md hover:bg-gray-50 focus:bg-gray-100 focus:outline-none"
+        />
+      </section> -->
       <Legend />
-      <section>
-        <div class="text-xs mt-1">
-          Built by <a href="https://ethan.link" target="_blank">Ethan</a> | Data
-          &copy;
-          <a href="https://www.openstreetmap.org/copyright" target="_blank"
-            >OpenStreetMap</a
-          >
-          contributors
-        </div>
-        <div class="text-xs mt-0.5">
-          <a href="https://github.com/booligoosh/sydneybikemap" target="_blank"
-            >View code</a
-          >
-          |
-          <a
-            href="https://github.com/Booligoosh/sydneybikemap#improving-the-data"
-            target="_blank">Improve data</a
-          >
-          |
-          <a href="mailto:sydneybikemap@ethan.link">Contact</a>
-          |
-          <a
-            href="https://github.com/Booligoosh/sydneybikemap#roadmap"
-            target="_blank">Roadmap</a
-          >
-        </div>
-      </section>
     </div>
+    <footer class="p-3 pt-2 border-t border-gray-500 bg-[#a1e3b8]">
+      <div class="text-xs mt-1">
+        Built by <a href="https://ethan.link" target="_blank">Ethan</a> | Data
+        &copy;
+        <a href="https://www.openstreetmap.org/copyright" target="_blank"
+          >OpenStreetMap</a
+        >
+        contributors
+      </div>
+      <div class="text-xs mt-0.5">
+        <a href="https://github.com/booligoosh/sydneybikemap" target="_blank"
+          >View code</a
+        >
+        |
+        <a
+          href="https://github.com/Booligoosh/sydneybikemap#improving-the-data"
+          target="_blank">Improve data</a
+        >
+        |
+        <a href="mailto:sydneybikemap@ethan.link">Contact</a>
+        |
+        <a
+          href="https://github.com/Booligoosh/sydneybikemap#roadmap"
+          target="_blank">Roadmap</a
+        >
+      </div>
+    </footer>
   </div>
 </div>

@@ -7,7 +7,7 @@
 
 <section>
   <h2 class="font-bold mb-1">Legend</h2>
-  <div class="grid gap-2 grid-cols-[auto,1fr] items-center">
+  <div class="grid gap-2 grid-cols-[auto,1fr] items-center mb-1">
     <LegendItem
       text="Separated cycleway"
       color="hsl(141, 54%, 28%)"
