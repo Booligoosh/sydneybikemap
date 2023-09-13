@@ -52,7 +52,7 @@ jobs:
           # If not being set, default to '--verbose'
           # extra: --threads 0
       - name: Convert mbtiles to pmtiles
-        run: ./pmtiles convert map.mbtiles map.pmtiles
+        run: ./pmtiles convert ./tiles/output/map.mbtiles ./tiles/output/map.pmtiles
       - name: Copy Cloudflare Pages config files to output folder
         run: |
           sudo cp ./tiles/_headers ./tiles/output/_headers
