@@ -1,8 +1,0 @@
-*.osm.pbf
-*.mbtiles
-*.pmtiles
-
-osmconvert64
-pmtiles
-coastline
-water-polygons-split-4326.zip

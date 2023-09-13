@@ -13,10 +13,6 @@ on:
 jobs:
   update-tiles:
     runs-on: ubuntu-latest
-    # Run all commands in this workflow from the tiles directory
-    defaults:
-      run:
-        working-directory: tiles
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,7 +27,7 @@ jobs:
       - name: Download OSM data
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
-        run: ./osmconvert64 new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -B=bbox.poly
+        run: ./osmconvert64 new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -B=tiles/bbox.poly
       - name: Download coastline
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
@@ -41,9 +37,9 @@ jobs:
         uses: Booligoosh/tilemaker-action-prebuilt@release
         with:
           # Required, same to --input
-          input: tiles/data.osm.pbf
+          input: data.osm.pbf
           # Required, same to --output. Could be a directory or a .mbtiles files
-          output: tiles/map.mbtiles
+          output: map.mbtiles
           # Optional, same to --config
           # If not being set, default to resources/config-openmaptiles.config
           config: tiles/config.json
@@ -61,4 +57,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: r2 object put sydneybikemap-tiles/map.pmtiles --file=tiles/map.pmtiles
+          command: r2 object put sydneybikemap-tiles/map.pmtiles --file=map.pmtiles
