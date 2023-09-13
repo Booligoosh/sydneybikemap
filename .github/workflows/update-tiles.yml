@@ -13,6 +13,10 @@ on:
 jobs:
   update-tiles:
     runs-on: ubuntu-latest
+    # Run all commands in this workflow from the tiles directory
+    defaults:
+      run:
+        working-directory: tiles
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -27,36 +31,34 @@ jobs:
       - name: Download OSM data
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
-        run: ./osmconvert64 new_south_wales.osm.pbf -o=tiles/data.osm.pbf --complete-ways -B=tiles/bbox.poly
+        run: ./osmconvert64 new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -B=bbox.poly
       - name: Download coastline
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
         run: unzip -j -d coastline water-polygons-split-4326.zip
-      - name: Create output directory
-        run: mkdir ./tiles/output
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
         uses: Booligoosh/tilemaker-action-prebuilt@release
         with:
           # Required, same to --input
-          input: ./tiles/data.osm.pbf
+          input: tiles/data.osm.pbf
           # Required, same to --output. Could be a directory or a .mbtiles files
-          output: ./tiles/output/map.mbtiles
+          output: tiles/map.mbtiles
           # Optional, same to --config
           # If not being set, default to resources/config-openmaptiles.config
-          config: ./tiles/config.json
+          config: tiles/config.json
           # Optional, same to --process
           # If not being set, default to resources/process-openmaptiles.lua
-          process: ./tiles/process.lua
+          process: tiles/process.lua
           # Optional, other arguments
           # If not being set, default to '--verbose'
           # extra: --threads 0
       - name: Convert mbtiles to pmtiles
-        run: ./pmtiles convert ./tiles/output/map.mbtiles ./tiles/output/map.pmtiles
+        run: ./pmtiles convert map.mbtiles map.pmtiles
       # https://github.com/cloudflare/wrangler-action#readme
       - name: Publish to Cloudflare R2
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: r2 object put sydneybikemap-tiles/map.pmtiles --file=tiles/output/map.pmtiles
+          command: r2 object put sydneybikemap-tiles/map.pmtiles --file=tiles/map.pmtiles
