@@ -36,7 +36,7 @@ jobs:
         run: mkdir ./tiles/output
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
-        uses: systemed/tilemaker@v2.3.0
+        uses: Booligoosh/tilemaker-action-prebuilt@release
         with:
           # Required, same to --input
           input: ./tiles/data.osm.pbf
