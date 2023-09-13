@@ -97,7 +97,7 @@ const mapStyle: StyleSpecification = {
   sources: {
     openmaptiles: {
       type: "vector",
-      url: "https://tiles.sydneybikemap.ethan.link/metadata.json",
+      url: "pmtiles://https://pmtiles.sydneybikemap.ethan.link/map.pmtiles",
     },
     contours: {
       type: "vector",
