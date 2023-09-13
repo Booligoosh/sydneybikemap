@@ -20,6 +20,10 @@ jobs:
         run: |
           wget http://m.m.i24.cc/osmconvert64
           chmod +x osmconvert64
+      - name: Install pmtiles
+        run: |
+          wget https://github.com/protomaps/go-pmtiles/releases/download/v1.9.2/go-pmtiles_1.9.2_Linux_x86_64.tar.gz
+          tar -zxvf go-pmtiles_1.9.2_Linux_x86_64.tar.gz pmtiles
       - name: Download OSM data
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
@@ -28,6 +32,8 @@ jobs:
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
         run: unzip -j -d coastline water-polygons-split-4326.zip
+      - name: Create output directory
+        run: mkdir ./tiles/output
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
         uses: systemed/tilemaker@v2.3.0
@@ -35,7 +41,7 @@ jobs:
           # Required, same to --input
           input: ./tiles/data.osm.pbf
           # Required, same to --output. Could be a directory or a .mbtiles files
-          output: ./tiles/output
+          output: ./tiles/output/map.mbtiles
           # Optional, same to --config
           # If not being set, default to resources/config-openmaptiles.config
           config: ./tiles/config.json
@@ -45,10 +51,8 @@ jobs:
           # Optional, other arguments
           # If not being set, default to '--verbose'
           # extra: --threads 0
-      - name: Remove duplicate files
-        run: |
-          cd tiles
-          sudo ./remove-duplicates.sh
+      - name: Convert mbtiles to pmtiles
+        run: ./pmtiles convert map.mbtiles map.pmtiles
       - name: Copy Cloudflare Pages config files to output folder
         run: |
           sudo cp ./tiles/_headers ./tiles/output/_headers
