@@ -13,7 +13,6 @@ on:
 jobs:
   update-tiles:
     runs-on: ubuntu-latest
-    container: ghcr.io/systemed/tilemaker:master
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -27,8 +26,23 @@ jobs:
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
         run: unzip -j -d coastline water-polygons-split-4326.zip
+      # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
-        run: tilemaker --input ./tiles/data.osm.pbf --output ./tiles/output --config ./tiles/config.json --process ./tiles/process.lua
+        uses: systemed/tilemaker@v2.3.0
+        with:
+          # Required, same to --input
+          input: ./tiles/data.osm.pbf
+          # Required, same to --output. Could be a directory or a .mbtiles files
+          output: ./tiles/output
+          # Optional, same to --config
+          # If not being set, default to resources/config-openmaptiles.config
+          config: ./tiles/config.json
+          # Optional, same to --process
+          # If not being set, default to resources/process-openmaptiles.lua
+          process: ./tiles/process.lua
+          # Optional, other arguments
+          # If not being set, default to '--verbose'
+          # extra: --threads 0
       - name: Remove duplicate files
         run: cd tiles && sudo ./remove-duplicates.sh
       - name: Copy Cloudflare Pages config files to output folder
