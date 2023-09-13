@@ -22,7 +22,7 @@ const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
   // Only show names at zoom 12 and below
   "text-field": ["step", ["zoom"], "", 12, ["get", "name:latin"]],
   // "text-field": "{name:latin}\n{name:nonlatin}",
-  "text-font": ["Noto Sans Regular"],
+  "text-font": ["Inter Semi Bold"],
   "text-max-width": 8,
   "text-offset": [0, 0.5],
   "text-size": 11,
@@ -378,7 +378,7 @@ const mapStyle: StyleSpecification = {
     //   filter: ["==", "$type", "Point"],
     //   layout: {
     //     "text-field": "{housenumber}",
-    //     "text-font": ["Noto Sans Regular"],
+    //     "text-font": ["Inter Semi Bold"],
     //     "text-size": 10,
     //   },
     //   paint: { "text-color": "rgba(212, 177, 146, 1)" },
@@ -1138,7 +1138,7 @@ const mapStyle: StyleSpecification = {
       filter: ["all"],
       layout: {
         "text-field": "{ele}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-size": {
           stops: [
             [16, 8],
@@ -1146,7 +1146,7 @@ const mapStyle: StyleSpecification = {
           ],
         },
         "symbol-placement": "line",
-        "text-letter-spacing": 0.05,
+        "text-letter-spacing": 0.0375,
         "text-rotation-alignment": "map",
         visibility: "visible",
       },
@@ -1165,7 +1165,7 @@ const mapStyle: StyleSpecification = {
         "icon-size": 1,
         "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 8,
         "text-size": 11,
         visibility: "visible",
@@ -1188,7 +1188,7 @@ const mapStyle: StyleSpecification = {
         "icon-size": 1,
         "text-anchor": "top",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 8,
         "text-offset": [0, 0.5],
         "text-size": 11,
@@ -1211,8 +1211,8 @@ const mapStyle: StyleSpecification = {
       layout: {
         "symbol-placement": "line",
         "text-field": "{name:latin} {name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
-        "text-letter-spacing": 0.1,
+        "text-font": ["Inter Semi Bold"],
+        "text-letter-spacing": 0.075,
         "text-rotation-alignment": "map",
         "text-size": {
           base: 1.4,
@@ -1253,7 +1253,7 @@ const mapStyle: StyleSpecification = {
       layout: {
         "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 6,
         "text-size": 11,
         visibility: "visible",
@@ -1276,7 +1276,7 @@ const mapStyle: StyleSpecification = {
       layout: {
         "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 6,
         "text-size": {
           stops: [
@@ -1402,7 +1402,7 @@ const mapStyle: StyleSpecification = {
       layout: {
         "text-anchor": "center",
         "text-field": "{maxspeed}",
-        "text-font": ["Noto Sans Bold"],
+        "text-font": ["Inter Bold"],
         "text-offset": [0, 0],
         visibility: "visible",
         "icon-size": {
@@ -1438,7 +1438,7 @@ const mapStyle: StyleSpecification = {
       layout: {
         "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 6,
         "text-size": {
           stops: [
@@ -1464,7 +1464,7 @@ const mapStyle: StyleSpecification = {
       filter: ["all", ["==", "$type", "Point"], ["==", "class", "city"]],
       layout: {
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 10,
         "text-size": {
           stops: [
@@ -1494,7 +1494,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: {
         "text-field": "{name:latin}",
-        "text-font": ["Noto Sans Regular"],
+        "text-font": ["Inter Semi Bold"],
         "text-max-width": 10,
         "text-size": {
           stops: [
@@ -1525,7 +1525,7 @@ const mapStyle: StyleSpecification = {
       ],
       layout: {
         "text-field": "{name:latin}",
-        "text-font": ["Noto Sans Bold"],
+        "text-font": ["Inter Bold"],
         "text-max-width": 10,
         "text-size": {
           stops: [
