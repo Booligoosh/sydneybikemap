@@ -72,9 +72,9 @@ wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wale
 
 osmconvert new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -B=bbox.poly
 
-tilemaker --input data.osm.pbf --output output/map.mbtiles --process process.lua --config config.json
+tilemaker --input data.osm.pbf --output map.mbtiles --process process.lua --config config.json
 
-pmtiles convert output/map.mbtiles output/map.pmtiles
+pmtiles convert map.mbtiles map.pmtiles
 ```
 
 If above download fails with HTTP 502 use
@@ -82,7 +82,7 @@ https://download.geofabrik.de/australia-oceania/australia-latest.osm.pbf
 
 # Serve the tiles
 
-You can use any webserver to serve the tiles from `tiles/output`. However, [`serve`](https://www.npmjs.com/package/serve) is recommended and a `serve.json` configuration has been provided.
+You can use any webserver to serve the tiles from the directory. However, [`serve`](https://www.npmjs.com/package/serve) is recommended and a `serve.json` configuration has been provided.
 
 Eg:
 
@@ -112,7 +112,7 @@ If you're making lots of changes to the `process.lua`, this might be helpful to 
 new tiles:
 
 ```bash
-tilemaker --input data.osm.pbf --output output/map.mbtiles --process process.lua --config config.json && pmtiles convert output/map.mbtiles output/map.pmtiles && npx serve -l 3005
+tilemaker --input data.osm.pbf --output map.mbtiles --process process.lua --config config.json && pmtiles convert map.mbtiles map.pmtiles && npx serve -l 3005
 ```
 
 ## References:
