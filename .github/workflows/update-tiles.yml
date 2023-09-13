@@ -50,7 +50,7 @@ jobs:
           process: ./tiles/process.lua
           # Optional, other arguments
           # If not being set, default to '--verbose'
-          # extra: --threads 0
+          extra: --skip-integrity
       - name: Convert mbtiles to pmtiles
         run: ./pmtiles convert ./tiles/output/map.mbtiles ./tiles/output/map.pmtiles
       # https://github.com/cloudflare/wrangler-action#readme
