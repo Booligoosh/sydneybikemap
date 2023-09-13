@@ -8,7 +8,7 @@
 </script>
 
 <div
-  class={`sm:fixed inset-5 z-10 sm:rounded-lg bg-white w-full sm:w-auto sm:max-w-sm border-b sm:border border-gray-${
+  class={`fixed sm:inset-5 z-10 sm:rounded-lg bg-white w-full sm:w-auto sm:max-w-sm border-b sm:border border-gray-${
     expanded ? "500" : "300"
   } h-fit overflow-hidden mx-auto lg:mx-0`}
 >
@@ -33,10 +33,9 @@
   </section>
   <!--
     Based on this trick https://stackoverflow.com/a/8331169
-    Don't transition at sm and below as it leads to janky map resizing
   -->
   <div
-    class="sm:transition-[max-height] overflow-hidden"
+    class="transition-[max-height] overflow-hidden"
     style:max-height={expanded ? "100vh" : 0}
   >
     <div
