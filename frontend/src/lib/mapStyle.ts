@@ -1163,11 +1163,10 @@ const mapStyle: StyleSpecification = {
       filter: ["all", ["==", "$type", "Point"], ["==", "rank", 1]],
       layout: {
         "icon-size": 1,
-        "text-anchor": "top",
+        "text-anchor": "center",
         "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Noto Sans Regular"],
         "text-max-width": 8,
-        "text-offset": [0, 0.5],
         "text-size": 11,
         visibility: "visible",
       },
