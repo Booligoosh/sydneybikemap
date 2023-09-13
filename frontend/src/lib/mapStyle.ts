@@ -1159,7 +1159,7 @@ const mapStyle: StyleSpecification = {
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "poi",
-      minzoom: 14,
+      minzoom: 15,
       filter: ["all", ["==", "$type", "Point"], ["==", "rank", 1]],
       layout: {
         "icon-size": 1,
