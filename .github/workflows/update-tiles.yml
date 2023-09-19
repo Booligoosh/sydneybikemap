@@ -34,7 +34,7 @@ jobs:
         run: unzip -j -d coastline water-polygons-split-4326.zip
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
-        uses: Booligoosh/tilemaker-action-prebuilt@release
+        uses: systemed/tilemaker@master
         with:
           # Required, same to --input
           input: data.osm.pbf
