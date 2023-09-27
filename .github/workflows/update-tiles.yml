@@ -12,6 +12,7 @@ on:
 
 jobs:
   update-tiles:
+    environment: Tiles
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

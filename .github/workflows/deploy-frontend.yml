@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy-frontend:
+    environment: Frontend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
