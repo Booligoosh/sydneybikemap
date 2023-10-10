@@ -59,3 +59,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: r2 object put sydneybikemap-tiles/map.pmtiles --file=map.pmtiles
+          packageManager: npm
