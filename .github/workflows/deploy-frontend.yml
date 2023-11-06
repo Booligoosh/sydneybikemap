@@ -11,6 +11,9 @@ jobs:
   deploy-frontend:
     environment: Frontend
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,11 +23,11 @@ jobs:
           cache: "npm"
           cache-dependency-path: frontend/package-lock.json
       - name: Install dependencies
-        run: cd frontend && npm install
+        run: npm install
       - name: Check
-        run: cd frontend && npm run check
+        run: npm run check
       - name: Build
-        run: cd frontend && npm run build
+        run: npm run build
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
