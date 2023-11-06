@@ -3,6 +3,7 @@ name: Update tiles
 on:
   push:
     paths:
+      - .github/workflows/update-tiles.yml
       - "tiles/**/*"
     branches:
       - "main"

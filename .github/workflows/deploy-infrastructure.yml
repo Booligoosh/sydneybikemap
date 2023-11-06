@@ -3,6 +3,7 @@ name: Deploy infrastructure
 on:
   push:
     paths:
+      - .github/workflows/deploy-infrastructure.yml
       - "infrastructure/**/*"
     branches:
       - main
