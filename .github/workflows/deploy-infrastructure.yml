@@ -1,0 +1,52 @@
+name: Deploy infrastructure
+
+on:
+  push:
+    paths:
+      - "infrastructure/**/*"
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-infrastructure:
+    environment: Infrastructure
+    name: "Terraform CDK Deploy"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infrastructure
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate module and provider bindings
+        run: npx cdktf-cli get
+
+      # # Remove this step if you don't have any
+      # - name: Run unit tests
+      #   run: npm run test
+
+      - name: Run Terraform CDK
+        uses: hashicorp/terraform-cdk-action@v0.2
+        with:
+          cdktfVersion: 0.17.0
+          terraformVersion: 1.5.2
+          workingDirectory: ./infrastructure
+          mode: auto-approve-apply
+          stackName: main
+          commentOnPr: false
+          terraformCloudToken: ${{ secrets.TF_API_TOKEN }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+        # https://github.com/hashicorp/terraform-cdk-action/issues/16
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
