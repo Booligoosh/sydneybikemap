@@ -36,7 +36,7 @@ jobs:
         run: unzip -j -d coastline water-polygons-split-4326.zip
       # https://github.com/systemed/tilemaker/blob/master/docs/RUNNING.md#github-action
       - name: Generate tiles
-        uses: systemed/tilemaker@v2.4.0
+        uses: systemed/tilemaker@master
         with:
           # Required, same to --input
           input: data.osm.pbf
