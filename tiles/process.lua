@@ -536,7 +536,7 @@ function way_function(way)
 
 	-- Set 'housenumber'
 	if housenumber~="" then
-		LayerAsCentroid("housenumber", false)
+		LayerAsCentroid("housenumber")
 		Attribute("housenumber", housenumber)
 	end
 
