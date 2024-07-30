@@ -18,10 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install osmconvert
-        run: |
-          wget http://m.m.i24.cc/osmconvert64
-          chmod +x osmconvert64
+      - name: Install osmium
+        run: sudo apt-get install osmium-tool
       - name: Install pmtiles
         run: |
           wget https://github.com/protomaps/go-pmtiles/releases/download/v1.9.2/go-pmtiles_1.9.2_Linux_x86_64.tar.gz
@@ -29,7 +27,7 @@ jobs:
       - name: Download OSM data
         run: wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
       - name: Crop OSM data
-        run: ./osmconvert64 new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -B=tiles/bbox.poly
+        run: osmium extract new_south_wales.osm.pbf --output data.osm.pbf --polygon tiles/bbox.geojson --strategy=smart --set-bounds --overwrite
       - name: Download coastline
         run: wget https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip
       - name: Extract coastline
@@ -50,7 +48,7 @@ jobs:
           process: tiles/process.lua
           # Optional, other arguments
           # If not being set, default to '--verbose'
-          # extra: --threads 0
+          extra: --skip-integrity
       - name: Convert mbtiles to pmtiles
         run: ./pmtiles convert map.mbtiles map.pmtiles
       # https://github.com/cloudflare/wrangler-action#readme

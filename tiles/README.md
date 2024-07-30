@@ -70,9 +70,9 @@ Download the OSM dump for NSW, clip the bounding box, create the tiles (specifie
 ```bash
 wget https://download.openstreetmap.fr/extracts/oceania/australia/new_south_wales.osm.pbf
 
-osmconvert new_south_wales.osm.pbf -o=data.osm.pbf --complete-ways -B=bbox.poly
+osmium extract new_south_wales.osm.pbf --output data.osm.pbf --polygon bbox.geojson --strategy=smart --set-bounds --overwrite
 
-tilemaker --input data.osm.pbf --output map.mbtiles --process process.lua --config config.json
+tilemaker --input data.osm.pbf --output map.mbtiles --process process.lua --config config.json --skip-integrity
 
 pmtiles convert map.mbtiles map.pmtiles
 ```
