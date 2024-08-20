@@ -211,6 +211,12 @@ function relation_scan_function(relation)
 	if Find("type")=="boundary" and Find("boundary")=="administrative" then
 		Accept()
 	end
+
+	-- ME
+	if Find("type")=="route" and Find("route")=="bicycle" then
+		Accept()
+	end
+	-- END ME
 end
 
 -- Process way tags
@@ -242,6 +248,7 @@ function way_function(way)
 	local write_name = false
 	local construction = Find("construction")
 	local proposed = Find("proposed") -- ME
+	local isBikeRelated = false -- ME
 
 	-- Miscellaneous preprocessing
 	if Find("disused") == "yes" then return end
@@ -257,8 +264,16 @@ function way_function(way)
 	while true do
 		local rel = NextRelation()
 		if not rel then break end
-		isBoundary = true
-		admin_level = math.min(admin_level, tonumber(FindInRelation("admin_level")) or 11)
+		local relationType = FindInRelation("type")
+		if relationType == "boundary" then
+			isBoundary = true
+			admin_level = math.min(admin_level, tonumber(FindInRelation("admin_level")) or 11)
+		end
+		-- ME
+		if relationType == "route" then
+			isBikeRelated = true
+		end
+		-- END ME
 	end
 
 	-- Boundaries in ways
@@ -396,6 +411,7 @@ function way_function(way)
 
 			-- ME
 			if maxspeed then AttributeNumeric("maxspeed", maxspeed) end
+			if isBikeRelated then AttributeNumeric("bikerelated", 1) end
 			-- END ME
 
 			-- Service

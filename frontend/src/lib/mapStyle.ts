@@ -524,6 +524,30 @@ const mapStyle: StyleSpecification = {
       },
     },
     {
+      id: "road_minor__bike_related",
+      type: "line",
+      source: "openmaptiles",
+      "source-layer": "transportation",
+      minzoom: 13,
+      filter: [
+        "all",
+        ["==", "$type", "LineString"],
+        ["in", "class", "minor"],
+        ["==", "bikerelated", 1],
+      ],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": "red",
+        "line-width": {
+          base: 1.55,
+          stops: [
+            [4, 0.25],
+            [20, 30],
+          ],
+        },
+      },
+    },
+    {
       id: "tunnel_minor",
       type: "line",
       source: "openmaptiles",
