@@ -46,4 +46,7 @@ export default defineConfig({
   css: {
     postcss,
   },
+  build: {
+    sourcemap: true,
+  },
 });
