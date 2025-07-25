@@ -4,7 +4,7 @@
   import { ChevronDownIcon } from "@rgossiaux/svelte-heroicons/solid";
 
   // Only start expanded if they've never visited the site before (or not since the latest update)
-  let expanded = localStorage.getItem("lastVisitedVersion") !== "2" || localStorage.getItem("lastVisitedVersion") !== "3";
+  let expanded = localStorage.getItem("lastVisitedVersion") !== "3";
 </script>
 
 <div
