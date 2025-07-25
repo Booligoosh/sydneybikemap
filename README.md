@@ -1,6 +1,6 @@
 # SydneyBikeMap
 
-https://sydneybikemap.ethan.link/
+https://bikemap.carto.au/sydney
 
 A vector tile style and website designed for viewing bicycle infrastructure in Sydney and surrounds.
 
