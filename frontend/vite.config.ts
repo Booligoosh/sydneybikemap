@@ -12,7 +12,7 @@ export default defineConfig({
     VitePWA({
       registerType: "prompt",
       manifest: {
-        id: "sydneybikemap",
+        id: "bikemap",
         name: "SydneyBikeMap",
         short_name: "SydneyBikeMap",
         display: "standalone",
