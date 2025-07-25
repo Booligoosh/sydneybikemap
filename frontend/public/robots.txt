@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://sydneybikemap.ethan.link/sitemap.xml
+Sitemap: https://bikemap.carto.au/sitemap.xml
