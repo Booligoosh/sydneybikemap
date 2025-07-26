@@ -1,14 +1,18 @@
 name: Update tiles
 
 on:
-  push:
-    paths:
-      - .github/workflows/update-tiles.yml
-      - "tiles/**/*"
-    branches:
-      - "main"
-  schedule:
-    - cron: "0 5 * * *"
+  # NOTE: The building of tiles now runs on carto.au infrastructure
+  # However, leaving this workflow here as a reference for people
+  # who are wanting to do something like this in their own projects
+
+  # push:
+  #   paths:
+  #     - .github/workflows/update-tiles.yml
+  #     - "tiles/**/*"
+  #   branches:
+  #     - "main"
+  # schedule:
+  #   - cron: "0 5 * * *"
   workflow_dispatch:
 
 jobs:
