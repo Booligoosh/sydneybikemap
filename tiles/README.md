@@ -98,7 +98,7 @@ npx serve -l 3005
 ```diff
     openmaptiles: {
       type: "vector",
--     url: "pmtiles://https://pmtiles.sydneybikemap.ethan.link/map.pmtiles",
+-     url: "pmtiles://https://src.carto.au/bikemap.pmtiles",
 +     url: "pmtiles://http://localhost:3005/map.pmtiles",
     },
 ```
