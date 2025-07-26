@@ -22,6 +22,13 @@ updateSW = registerSW({
   },
 });
 
+// If on a path other than /sydney, replaceState to /sydney leaving the rest (hash, query etc) the same
+if (window.location.pathname !== "/sydney") {
+  const newUrl = new URL(window.location.href);
+  newUrl.pathname = "/sydney";
+  history.replaceState({}, document.title, newUrl.href);
+}
+
 // Add event listener to persist hash to localStorage on change
 // See https://stackoverflow.com/a/64927639
 window.history.replaceState = new Proxy(window.history.replaceState, {
