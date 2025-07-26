@@ -22,6 +22,7 @@
       // customAttribution:
       //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
       hash: "map",
+      attributionControl: false, // We display attribution in the infobox component
     });
 
     // Add controls
