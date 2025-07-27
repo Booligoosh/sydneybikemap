@@ -22,7 +22,7 @@
     </div>
   {/snippet} -->
   {#snippet hideable()}
-    <div class="flex flex-col border-t border-gray-500 p-3">
+    <div class="flex flex-col p-3">
       <Legend />
     </div>
     <footer class="border-t border-inherit bg-[#a1e3b8] p-3 pt-2">
