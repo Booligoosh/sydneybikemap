@@ -10,6 +10,10 @@
 <Panel hideableName="legend" showHideableInitially={expanded}>
   {#snippet staticHeader()}
     <div class="p-3">
+      <div class="mb-1.5 text-xs">
+        Sydney | <span class="font-semibold">Melbourne</span> | Brisbane | Adelaide
+        | Perth | Hobart
+      </div>
       <Logo />
     </div>
   {/snippet}
@@ -27,8 +31,8 @@
     </div>
     <footer class="border-t border-inherit bg-gray-100 p-3 pt-2">
       <div class="mt-1 text-xs">
-        Built by <a href="https://ethan.link" target="_blank">Ethan</a> | Data
-        &copy;
+        Built by <a href="https://carto.au" target="_blank">Carto Australia</a>
+        | Data &copy;
         <a href="https://www.openstreetmap.org/copyright" target="_blank"
           >OpenStreetMap</a
         >

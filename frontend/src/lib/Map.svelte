@@ -15,9 +15,10 @@
     map = new maplibre.Map({
       container: mapContainer,
       style: mapStyle,
-      center: [151.0409, -33.8455], // starting position [lng, lat]
-      zoom: 9.15, // starting zoom
-      maxBounds: [149.536285, -34.927346, 152.571173, -32.231172], // based on coords in bbox.poly
+      center: [144.9556, -37.7986], // starting position [lng, lat]
+      zoom: 11.2, // starting zoom
+      minZoom: 6,
+      // maxBounds: [149.536285, -34.927346, 152.571173, -32.231172], // based on coords in bbox.poly
       maxZoom: 20,
       // customAttribution:
       //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
