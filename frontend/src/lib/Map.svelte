@@ -8,8 +8,8 @@
   const protocol = new pmtiles.Protocol();
   maplibre.addProtocol("pmtiles", protocol.tile);
 
-  let map;
-  let mapContainer;
+  let map: maplibre.Map;
+  let mapContainer: HTMLDivElement;
 
   onMount(() => {
     map = new maplibre.Map({

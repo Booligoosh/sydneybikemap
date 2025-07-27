@@ -1,14 +1,14 @@
 import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { SvelteKitPWA } from "@vite-pwa/sveltekit";
-import { imagetools } from "vite-imagetools";
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
     tailwindcss(),
     sveltekit(),
-    imagetools(),
+    enhancedImages(),
     SvelteKitPWA({
       registerType: "prompt",
       manifest: {

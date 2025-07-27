@@ -1,9 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import Modal from "$lib/Modal.svelte";
-  import separatedCycleway1 from "$lib/assets/infra-examples/separatedCycleway1.jpg?w=928&h=696&imagetools";
-  import sharedPath1 from "$lib/assets/infra-examples/sharedPath1.jpg?w=928&h=696&imagetools";
-  import sharedPath2 from "$lib/assets/infra-examples/sharedPath2.jpg?w=928&h=696&imagetools";
 
   export let type: "separatedCycleway" | "sharedPath" | null;
 
@@ -20,8 +17,8 @@
         a kerb, and are for bikes only.
       </p>
 
-      <img
-        src={separatedCycleway1}
+      <enhanced:img
+        src="./assets/infra-examples/separatedCycleway1.jpg?w=928&h=696"
         alt="College Street Cycleway"
         width="4672"
         height="3504"
@@ -36,14 +33,14 @@
         pedestrian/bike symbols, or a sign.
       </p>
 
-      <img
-        src={sharedPath1}
+      <enhanced:img
+        src="./assets/infra-examples/sharedPath1.jpg?w=928&h=696"
         alt="Shared Path in Mascot marked with a sign, white centre line, and pedestrian/bike symbols"
         width="3504"
         height="2628"
       />
-      <img
-        src={sharedPath2}
+      <enhanced:img
+        src="./assets/infra-examples/sharedPath2.jpg?w=928&h=696"
         alt="Shared Path at Circular Quay marked with a blue line"
         width="4672"
         height="3504"
