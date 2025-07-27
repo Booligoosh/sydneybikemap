@@ -25,7 +25,7 @@
     <div class="flex flex-col p-3">
       <Legend />
     </div>
-    <footer class="border-t border-inherit bg-[#a1e3b8] p-3 pt-2">
+    <footer class="border-t border-inherit bg-gray-100 p-3 pt-2">
       <div class="mt-1 text-xs">
         Built by <a href="https://ethan.link" target="_blank">Ethan</a> | Data
         &copy;
