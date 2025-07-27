@@ -1,9 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.cjs";
 
 a {
-  @apply hover:underline text-blue-600 hover:text-blue-800 active:text-blue-800;
+  @apply text-blue-600 hover:text-blue-800 hover:underline active:text-blue-800;
 }
 
 body {

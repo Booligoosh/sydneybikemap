@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { QuestionMarkCircleIcon } from "@rgossiaux/svelte-heroicons/solid";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { QuestionMarkCircle } from "@steeze-ui/heroicons";
   import { createEventDispatcher } from "svelte";
 
   export let lineStyle: string;
@@ -12,20 +13,20 @@
 
 <div class="contents">
   <div
-    class="w-7 border-b-4 h-0"
+    class="h-0 w-7 border-b-4"
     style:border-color={color}
     style:border-style={lineStyle}
   />
-  <div class="text-sm flex items-center">
+  <div class="flex items-center text-sm">
     {#if showInfoBtn}
       <button
-        class="contents"
+        class="contents cursor-pointer"
         title="More info"
         on:click={() => dispatch("infoclick")}
       >
         {text}&nbsp;
-        <div class="inline w-[1em] h-[1em]">
-          <QuestionMarkCircleIcon />
+        <div class="inline h-[1em] w-[1em]">
+          <Icon src={QuestionMarkCircle} theme="micro" />
         </div>
       </button>
     {:else}

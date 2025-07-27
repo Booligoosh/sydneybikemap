@@ -1,15 +1,15 @@
-import { defineConfig } from "vite";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
-import { VitePWA } from "vite-plugin-pwa";
-import postcss from "./postcss.config.cjs";
+import tailwindcss from "@tailwindcss/vite";
+import { sveltekit } from "@sveltejs/kit/vite";
+import { SvelteKitPWA } from "@vite-pwa/sveltekit";
 import { imagetools } from "vite-imagetools";
+import { defineConfig } from "vite";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    svelte(),
+    tailwindcss(),
+    sveltekit(),
     imagetools(),
-    VitePWA({
+    SvelteKitPWA({
       registerType: "prompt",
       manifest: {
         id: "bikemap",
@@ -36,15 +36,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html}", "assets/**/*"],
+        globPatterns: ["**/*.{js,css,html}", "/lib/assets/**/*"],
+        maximumFileSizeToCacheInBytes: 2097152 * 2,
       },
     }),
   ],
   server: {
     port: 3000,
-  },
-  css: {
-    postcss,
   },
   build: {
     sourcemap: true,

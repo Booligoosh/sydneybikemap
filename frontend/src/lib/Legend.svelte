@@ -1,13 +1,13 @@
 <script lang="ts">
-  import LegendInfoModal from "./LegendInfoModal.svelte";
-  import LegendItem from "./LegendItem.svelte";
+  import LegendInfoModal from "$lib/LegendInfoModal.svelte";
+  import LegendItem from "$lib/LegendItem.svelte";
 
   let infoModalType: "separatedCycleway" | "sharedPath" | null = null;
 </script>
 
 <section>
-  <h2 class="font-bold mb-1">Legend</h2>
-  <div class="grid gap-2 grid-cols-[auto,1fr] items-center mb-1">
+  <h2 class="mb-1 font-bold">Legend</h2>
+  <div class="mb-1 grid grid-cols-[auto_1fr] items-center gap-2">
     <LegendItem
       text="Separated cycleway"
       color="hsl(141, 54%, 28%)"

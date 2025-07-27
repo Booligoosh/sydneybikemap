@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import maplibre from "maplibre-gl";
   import "maplibre-gl/dist/maplibre-gl.css";
-  import mapStyle from "./mapStyle";
+  import mapStyle from "$lib/mapStyle";
   import * as pmtiles from "pmtiles";
   // Add pmtiles protocol handling
   const protocol = new pmtiles.Protocol();
@@ -34,8 +34,13 @@
           enableHighAccuracy: true,
         },
         trackUserLocation: true,
-      })
+      }),
     );
+
+    // Save last hash so we can restore it on next page load without hash
+    map.on("moveend", () => {
+      localStorage.setItem("lastHash", window.location.hash);
+    });
   });
 
   onDestroy(() => {

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { XIcon } from "@rgossiaux/svelte-heroicons/solid";
+  import { Icon } from "@steeze-ui/svelte-icon";
+  import { XMark } from "@steeze-ui/heroicons";
   import { createEventDispatcher } from "svelte";
 
   export let open: boolean;
@@ -20,34 +21,34 @@
       To: "opacity-0"
   -->
   <div
-    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+    class="fixed inset-0 bg-gray-500/75 transition-opacity"
     style:visibility={open ? "" : "hidden"}
     style:opacity={open ? "" : "0"}
   />
 
   <div
-    class="fixed inset-0 w-full z-10 overflow-y-auto"
+    class="fixed inset-0 z-10 w-full overflow-y-auto"
     style:visibility={open ? "" : "hidden"}
     style:opacity={open ? "" : "0"}
   >
-    <button
-      class="flex min-h-full justify-center p-4 text-center items-center sm:p-0 w-full cursor-auto"
+    <div
+      class="flex min-h-full w-full cursor-auto items-center justify-center p-4 text-center sm:p-0"
       on:click|self={close}
     >
       <div
-        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full max-w-lg"
+        class="relative my-8 w-full max-w-lg transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all"
       >
-        <div class="bg-white p-4 sm:p-6 select-text">
+        <div class="bg-white p-4 select-text sm:p-6">
           <slot />
         </div>
         <button
-          class="absolute inset-4 sm:inset-6 ml-auto h-6 w-6 p-0.5 text-gray-400 hover:text-gray-500 active:text-gray-600 transition-all"
+          class="absolute inset-2 ml-auto h-6 w-6 cursor-pointer text-gray-400 transition-all hover:text-gray-500 active:text-gray-600 sm:inset-6"
           aria-label="Close"
           on:click={close}
         >
-          <XIcon />
+          <Icon src={XMark} theme="micro" class="size-full" />
         </button>
       </div>
-    </button>
+    </div>
   </div>
 </div>
