@@ -16,7 +16,7 @@
   });
 </script>
 
-<main class="flex select-none flex-col">
+<main class="flex flex-col select-none">
   <Infobox />
   <Map />
 </main>

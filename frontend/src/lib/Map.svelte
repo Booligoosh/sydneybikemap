@@ -39,12 +39,12 @@
 
     // Save last hash so we can restore it on next page load without hash
     map.on("moveend", () => {
-      localStorage.setItem("lastHash", window.location.hash);
+      localStorage.setItem("lastHash", globalThis.window?.location.hash);
     });
   });
 
   onDestroy(() => {
-    map.remove();
+    if (map) map.remove();
   });
 </script>
 

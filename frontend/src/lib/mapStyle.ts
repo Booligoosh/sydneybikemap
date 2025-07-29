@@ -105,7 +105,9 @@ const mapStyle: StyleSpecification = {
     },
   },
   glyphs: "/glyphs/{fontstack}/{range}.pbf",
-  sprite: window.location.origin + "/map-icons/spritesheets/sheet",
+  sprite:
+    (globalThis.window?.location.origin ?? "https://bikemap.carto.au") +
+    "/map-icons/spritesheets/sheet",
   layers: [
     {
       id: "background",

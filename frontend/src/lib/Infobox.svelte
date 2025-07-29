@@ -4,7 +4,7 @@
   import { Panel } from "@carto-au/svelte";
 
   // Only start expanded if they've never visited the site before (or not since the latest update)
-  const expanded = localStorage.getItem("lastVisitedVersion") !== "3";
+  let expanded = globalThis.localStorage?.getItem("lastVisitedVersion") !== "3";
 </script>
 
 <Panel hideableName="legend" showHideableInitially={expanded}>
