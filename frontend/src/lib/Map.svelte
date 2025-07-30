@@ -4,20 +4,52 @@
   import "maplibre-gl/dist/maplibre-gl.css";
   import mapStyle from "$lib/mapStyle";
   import * as pmtiles from "pmtiles";
+  import type { RegionConfig } from "./regions";
+  import { page } from "$app/state";
   // Add pmtiles protocol handling
   const protocol = new pmtiles.Protocol();
   maplibre.addProtocol("pmtiles", protocol.tile);
 
+  interface Props {
+    regionConfig: RegionConfig;
+  }
+  let { regionConfig }: Props = $props();
+
   let map: maplibre.Map;
   let mapContainer: HTMLDivElement;
+
+  $effect(() => {
+    if (map) map.setMaxBounds(regionConfig.maxBounds);
+    regionConfig; // Depend on
+  });
+
+  $effect(() => {
+    // Run when regionConfig changes
+    regionConfig;
+    // ALSO run when the hash changes
+    // This can happen in 3 scenarios:
+    // 1. When the user clicks a link with a certain hash or manually replaces the hash
+    // 2. When the user loads the page with no hash
+    // 3. When the user changes region and Svelte removes the hash
+    // 4. When the user re-clicks on the same region and Svelte removes the hash
+    // We only want to updates the hash in scenarios 2, 3 & 4, hence the if statement below.
+    page.url.hash;
+
+    if (!window.location.hash) {
+      // Setting the hash will update the visible hash in the browser AND cause the map to move to the right spot
+      window.location.hash =
+        localStorage.getItem(`lastHash-${regionConfig.id}`) ||
+        `#map=${regionConfig.startZoom}/${regionConfig.startCoord[1]}/${regionConfig.startCoord[0]}`;
+    }
+  });
 
   onMount(() => {
     map = new maplibre.Map({
       container: mapContainer,
       style: mapStyle,
-      center: [151.0409, -33.8455], // starting position [lng, lat]
-      zoom: 9.15, // starting zoom
-      maxBounds: [149.536285, -34.927346, 152.571173, -32.231172], // based on coords in bbox.poly
+      center: regionConfig.startCoord,
+      zoom: regionConfig.startZoom,
+      maxBounds: regionConfig.maxBounds,
       maxZoom: 20,
       // customAttribution:
       //   "&copy; SydneyBikeMap &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
@@ -39,7 +71,10 @@
 
     // Save last hash so we can restore it on next page load without hash
     map.on("moveend", () => {
-      localStorage.setItem("lastHash", globalThis.window?.location.hash);
+      localStorage.setItem(
+        `lastHash-${regionConfig.id}`,
+        globalThis.window?.location.hash,
+      );
     });
   });
 

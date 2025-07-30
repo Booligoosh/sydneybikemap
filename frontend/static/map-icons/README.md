@@ -1,2 +1,4 @@
-- Public transport icons from https://opendata.transport.nsw.gov.au/dataset/transport-mode-symbols-and-pictograms
+- NSW public transport icons from https://opendata.transport.nsw.gov.au/dataset/transport-mode-symbols-and-pictograms
   - Converted from PNG to PNG embedded in SVG using Inkscape
+- VIC public transport icons from https://discover.data.vic.gov.au/dataset/transport-pictograms
+- Default public transport icons from https://fonts.google.com/icons?icon.style=Filled&icon.set=Material+Icons&icon.size=24&icon.color=%23404040

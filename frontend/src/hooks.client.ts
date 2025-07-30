@@ -3,11 +3,6 @@ import type { ClientInit } from "@sveltejs/kit";
 import { registerSW } from "virtual:pwa-register";
 
 export const init: ClientInit = () => {
-  // When page loads, if there's no hash and we have a hash saved, use that
-  if (!window.location.hash && localStorage.getItem("lastHash")) {
-    window.location.hash = localStorage.getItem("lastHash") ?? "";
-  }
-
   // Register SW
   let updateSW: (reloadPage?: boolean) => Promise<void> | undefined;
 

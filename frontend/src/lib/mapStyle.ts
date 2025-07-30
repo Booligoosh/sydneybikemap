@@ -27,14 +27,6 @@ const PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT = {
   "text-offset": [0, 0.5],
   "text-size": 11,
   visibility: "visible",
-  "icon-size": {
-    stops: [
-      // when zoom is 9
-      [9, 0.015],
-      // when zoom is 15
-      [15, 0.04],
-    ],
-  },
   "icon-rotate": 0,
   "icon-overlap": "always",
   "text-optional": true,
@@ -391,7 +383,7 @@ const mapStyle: StyleSpecification = {
       source: "contours",
       "source-layer": "contours",
       minzoom: 14,
-      filter: ["all", ["!=", ["%", ["to-number",["get", "e"]], 10], 0]],
+      filter: ["all", ["!=", ["%", ["to-number", ["get", "e"]], 10], 0]],
       layout: { ...CONTOURS_STYLE_LAYOUT },
       paint: { ...CONTOURS_STYLE_PAINT },
     },
@@ -401,7 +393,7 @@ const mapStyle: StyleSpecification = {
       source: "contours",
       "source-layer": "contours",
       minzoom: 12,
-      filter: ["all", ["==", ["%", ["to-number",["get", "e"]], 10], 0]],
+      filter: ["all", ["==", ["%", ["to-number", ["get", "e"]], 10], 0]],
       layout: { ...CONTOURS_STYLE_LAYOUT },
       paint: { ...CONTOURS_STYLE_PAINT },
     },
@@ -1325,7 +1317,7 @@ const mapStyle: StyleSpecification = {
       paint: {},
     },
     {
-      id: "train_station",
+      id: "pt_station_default",
       type: "symbol",
       source: "openmaptiles",
       "source-layer": "transportation_name",
@@ -1335,56 +1327,100 @@ const mapStyle: StyleSpecification = {
         ["==", "$type", "Point"],
         ["==", "class", "railway"],
         ["==", "subclass", "station"],
+        ["!=", "statecode", "1"],
+        ["!=", "statecode", "2"],
+      ],
+      layout: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
+        "icon-image": [
+          "match",
+          ["get", "subsubclass"],
+          "light_rail",
+          "default_light_rail",
+          "default_train",
+        ],
+        "icon-size": {
+          stops: [
+            // when zoom is 9
+            [9, 0.25],
+            // when zoom is 15
+            [15, 0.67],
+          ],
+        },
+      },
+      paint: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
+      },
+    },
+    {
+      id: "pt_station_nsw",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "transportation_name",
+      minzoom: 9,
+      filter: [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "class", "railway"],
+        ["==", "subclass", "station"],
+        ["==", "statecode", "1"],
+      ],
+      layout: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
+        "icon-image": [
+          "match",
+          ["get", "subsubclass"],
+          "subway",
+          "nsw_metro",
+          "light_rail",
+          "nsw_light_rail",
+          "nsw_train",
+        ],
+        "icon-size": {
+          stops: [
+            // when zoom is 9
+            [9, 0.015],
+            // when zoom is 15
+            [15, 0.04],
+          ],
+        },
+      },
+      paint: {
+        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
+      },
+    },
+    {
+      id: "pt_station_vic",
+      type: "symbol",
+      source: "openmaptiles",
+      "source-layer": "transportation_name",
+      minzoom: 9,
+      filter: [
+        "all",
+        ["==", "$type", "Point"],
+        ["==", "class", "railway"],
+        ["==", "subclass", "station"],
+        ["==", "statecode", "2"],
+        // Too many tram stops, so don't display for now. Consider VIC-specific rendering in future.
         ["!=", "subsubclass", "light_rail"],
-        ["!=", "subsubclass", "subway"],
       ],
       layout: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
-        "icon-image": "train",
-      },
-      paint: {
-        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
-      },
-    },
-    {
-      id: "metro_station",
-      type: "symbol",
-      source: "openmaptiles",
-      "source-layer": "transportation_name",
-      minzoom: 9,
-      filter: [
-        "all",
-        ["==", "$type", "Point"],
-        ["==", "class", "railway"],
-        ["==", "subclass", "station"],
-        ["==", "subsubclass", "subway"],
-      ],
-      layout: {
-        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
-        "icon-image": "metro",
-      },
-      paint: {
-        ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
-      },
-    },
-    {
-      id: "light_rail_stop",
-      type: "symbol",
-      source: "openmaptiles",
-      "source-layer": "transportation_name",
-      minzoom: 9,
-      filter: [
-        "all",
-        ["==", "$type", "Point"],
-        ["==", "class", "railway"],
-        ["==", "subclass", "station"],
-        ["==", "subsubclass", "light_rail"],
-      ],
-      layout: {
-        ...PUBLIC_TRANSPORT_STOP_STYLE_LAYOUT,
-        // Only show names at zoom 13 and below
-        "text-field": ["step", ["zoom"], "", 13, ["get", "name:latin"]],
-        "icon-image": "light_rail",
+        "icon-image": [
+          "match",
+          ["get", "subsubclass"],
+          "light_rail",
+          "vic_tram",
+          "vic_train",
+        ],
+        "icon-size": {
+          stops: [
+            // when zoom is 9
+            [9, 0.021],
+            // when zoom is 15
+            [15, 0.057],
+          ],
+        },
       },
       paint: {
         ...PUBLIC_TRANSPORT_STOP_STYLE_PAINT,
