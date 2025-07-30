@@ -384,12 +384,12 @@ const mapStyle: StyleSpecification = {
     //   paint: { "text-color": "rgba(212, 177, 146, 1)" },
     // },
     {
-      id: "contours_5m",
+      id: "contours_sub10m",
       type: "line",
       source: "contours",
       "source-layer": "contours",
       minzoom: 14,
-      filter: ["all", ["!=", ["%", ["get", "ele"], 10], 0]],
+      filter: ["all", ["!=", ["%", ["to-number",["get", "e"]], 10], 0]],
       layout: { ...CONTOURS_STYLE_LAYOUT },
       paint: { ...CONTOURS_STYLE_PAINT },
     },
@@ -399,7 +399,7 @@ const mapStyle: StyleSpecification = {
       source: "contours",
       "source-layer": "contours",
       minzoom: 12,
-      filter: ["all", ["==", ["%", ["get", "ele"], 10], 0]],
+      filter: ["all", ["==", ["%", ["to-number",["get", "e"]], 10], 0]],
       layout: { ...CONTOURS_STYLE_LAYOUT },
       paint: { ...CONTOURS_STYLE_PAINT },
     },
@@ -1137,7 +1137,7 @@ const mapStyle: StyleSpecification = {
       minzoom: 15.5,
       filter: ["all"],
       layout: {
-        "text-field": "{ele}",
+        "text-field": "{e}",
         "text-font": ["Inter Semi Bold"],
         "text-size": {
           stops: [
